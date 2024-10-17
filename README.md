@@ -15,7 +15,7 @@ EpMonitor disableDuring: [
 ### How to use it
 
 ```Smalltalk
-recorder := MpCoypuRecorder new.
+recorder := CoypuRecorder new.
 recorder record "start recording".
 
 "Coypu code here"
