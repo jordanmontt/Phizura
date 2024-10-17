@@ -16,6 +16,18 @@ CoypuRecorder class >> forceUnrecord [
 	MpMethodProxy allInstances do: #uninstall
 ]
 
+{ #category : 'inspector' }
+CoypuRecorder >> allRecords [
+
+	^ instrumenter allRecords
+]
+
+{ #category : 'api - exporting' }
+CoypuRecorder >> exportAsJSON [
+
+	^ (CoypuJSONExporter onRecorder: self) export
+]
+
 { #category : 'initialization' }
 CoypuRecorder >> initialize [
 
@@ -28,7 +40,7 @@ CoypuRecorder >> inspectRecords [
 
 	<inspectorPresentationOrder: 0 title: 'records'>
 	| allRecords |
-	allRecords := instrumenter allRecords.
+	allRecords := self allRecords.
 	^ SpListPresenter new
 		  items: allRecords;
 		  yourself

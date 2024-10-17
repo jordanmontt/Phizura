@@ -3,11 +3,25 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'time',
-		'method'
+		'method',
+		'receiver',
+		'arguments'
 	],
 	#category : 'MpCoypuRecorder',
 	#package : 'MpCoypuRecorder'
 }
+
+{ #category : 'accessing' }
+CoypuRecordEntry >> arguments [
+
+	^ arguments
+]
+
+{ #category : 'accessing' }
+CoypuRecordEntry >> arguments: anObject [
+
+	arguments := anObject
+]
 
 { #category : 'accessing' }
 CoypuRecordEntry >> method [
@@ -25,6 +39,18 @@ CoypuRecordEntry >> method: anObject [
 CoypuRecordEntry >> printOn: aStream [
 
 	aStream << method selector << ' -> ' << time asTime print24
+]
+
+{ #category : 'accessing' }
+CoypuRecordEntry >> receiver [
+
+	^ receiver
+]
+
+{ #category : 'accessing' }
+CoypuRecordEntry >> receiver: anObject [
+
+	receiver := anObject
 ]
 
 { #category : 'accessing' }

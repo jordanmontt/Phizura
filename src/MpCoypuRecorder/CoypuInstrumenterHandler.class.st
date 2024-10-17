@@ -10,6 +10,17 @@ Class {
 }
 
 { #category : 'evaluating' }
+CoypuInstrumenterHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfObjects [
+
+	records add: (CoypuRecordEntry new
+			 time: DateAndTime now;
+			 method: instrumentedMethod;
+			 receiver: anObject;
+			 arguments: anArrayOfObjects;
+			 yourself)
+]
+
+{ #category : 'evaluating' }
 CoypuInstrumenterHandler >> beforeMethod [
 
 	records add: (CoypuRecordEntry new
