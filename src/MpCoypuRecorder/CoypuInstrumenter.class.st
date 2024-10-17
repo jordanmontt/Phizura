@@ -20,7 +20,8 @@ Class {
 { #category : 'api' }
 CoypuInstrumenter >> allRecords [
 
-	^ self proxyVariables collect: [:each | each handler records]
+	^ (self proxyVariables flatCollect: [ :each | each handler records ]) sorted: [ :a :b |
+		  a time < b time ]
 ]
 
 { #category : 'instrumentation' }

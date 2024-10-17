@@ -28,8 +28,7 @@ CoypuRecorder >> inspectRecords [
 
 	<inspectorPresentationOrder: 0 title: 'records'>
 	| allRecords |
-	allRecords := instrumenter allRecords flattened.
-	allRecords sort: [ :a :b | a time < b time ].
+	allRecords := instrumenter allRecords.
 	^ SpListPresenter new
 		  items: allRecords;
 		  yourself
