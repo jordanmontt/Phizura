@@ -7,7 +7,7 @@ A [Coypu](https://github.com/lucretiomsp/Coypu) recorder implementation using [M
 ```Smalltalk
 EpMonitor disableDuring: [
 	Metacello new
-		baseline: 'IllimaniProfiler';
+		baseline: 'MpCoypuRecorder';
 		repository: 'github://jordanmontt/CoypuRecorder:main';
 		load ].
 ```
