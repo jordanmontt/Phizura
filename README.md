@@ -11,6 +11,21 @@ EpMonitor disableDuring: [
 		repository: 'github://jordanmontt/CoypuRecorder:main';
 		load ].
 ```
+
+### How to use it
+
+```Smalltalk
+recorder := MpCoypuRecorder new.
+recorder record "start recording".
+
+"Coypu code here"
+
+recorder unrecord "stop recording".
+
+"To import the records as a JSON"
+recorder exportAsJSON.
+```
+
 ### Implementation details
 
 Method that are captured:
