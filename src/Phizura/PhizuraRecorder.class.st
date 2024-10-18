@@ -1,15 +1,15 @@
 Class {
-	#name : 'CoypuRecorder',
+	#name : 'PhizuraRecorder',
 	#superclass : 'Object',
 	#instVars : [
 		'instrumenter'
 	],
-	#category : 'MpCoypuRecorder',
-	#package : 'MpCoypuRecorder'
+	#category : 'Phizura',
+	#package : 'Phizura'
 }
 
 { #category : 'api' }
-CoypuRecorder class >> forceUnrecord [
+PhizuraRecorder class >> forceUnrecord [
 
 	self flag:
 		'This method is for emergencies. When the code is broken because of the MethodProxies, call this method to force to restore the original methods'.
@@ -17,26 +17,26 @@ CoypuRecorder class >> forceUnrecord [
 ]
 
 { #category : 'inspector' }
-CoypuRecorder >> allRecords [
+PhizuraRecorder >> allRecords [
 
 	^ instrumenter allRecords
 ]
 
 { #category : 'api - exporting' }
-CoypuRecorder >> exportAsJSON [
+PhizuraRecorder >> exportAsJSON [
 
-	^ (CoypuJSONExporter onRecorder: self) export
+	^ (PhizuraJSONExporter onRecorder: self) export
 ]
 
 { #category : 'initialization' }
-CoypuRecorder >> initialize [
+PhizuraRecorder >> initialize [
 
 	super initialize.
-	instrumenter := CoypuInstrumenter new
+	instrumenter := PhizuraInstrumenter new
 ]
 
 { #category : 'inspector' }
-CoypuRecorder >> inspectRecords [
+PhizuraRecorder >> inspectRecords [
 
 	<inspectorPresentationOrder: 0 title: 'records'>
 	| allRecords |
@@ -47,13 +47,13 @@ CoypuRecorder >> inspectRecords [
 ]
 
 { #category : 'api actions' }
-CoypuRecorder >> record [
+PhizuraRecorder >> record [
 
 	instrumenter instrument
 ]
 
 { #category : 'api actions' }
-CoypuRecorder >> unrecord [
+PhizuraRecorder >> unrecord [
 
 	instrumenter uninstrument
 ]

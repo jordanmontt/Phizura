@@ -1,6 +1,6 @@
 Extension { #name : 'MpMethodProxy' }
 
-{ #category : '*MpCoypuRecorder' }
+{ #category : '*Phizura' }
 MpMethodProxy class >> coypuOnMethod: aMethod handlerClass: aHandlerClass [
 
 	^ self new

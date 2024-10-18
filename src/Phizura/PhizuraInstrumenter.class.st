@@ -1,5 +1,5 @@
 Class {
-	#name : 'CoypuInstrumenter',
+	#name : 'PhizuraInstrumenter',
 	#superclass : 'Object',
 	#instVars : [
 		'proxyActiveDSP',
@@ -13,32 +13,32 @@ Class {
 		'proxyStop',
 		'proxyAtPut'
 	],
-	#category : 'MpCoypuRecorder',
-	#package : 'MpCoypuRecorder'
+	#category : 'Phizura',
+	#package : 'Phizura'
 }
 
 { #category : 'api' }
-CoypuInstrumenter >> allRecords [
+PhizuraInstrumenter >> allRecords [
 
 	^ (self proxyVariables flatCollect: [ :each | each handler records ]) sorted: [ :a :b |
 		  a time < b time ]
 ]
 
 { #category : 'instrumentation' }
-CoypuInstrumenter >> handlerClass [
+PhizuraInstrumenter >> handlerClass [
 
-	^ CoypuInstrumenterHandler
+	^ PhizuraInstrumenterHandler
 ]
 
 { #category : 'initialization' }
-CoypuInstrumenter >> initialize [
+PhizuraInstrumenter >> initialize [
 
 	super initialize.
 	self initializeMethodProxies
 ]
 
 { #category : 'initialization' }
-CoypuInstrumenter >> initializeMethodProxies [
+PhizuraInstrumenter >> initializeMethodProxies [
 
 	proxyActiveDSP := MpMethodProxy coypuOnMethod: Performance >> #activeDSP: handlerClass: self handlerClass.
 	proxyFreq := MpMethodProxy coypuOnMethod: Performance >> #freq: handlerClass: self handlerClass.
@@ -53,13 +53,13 @@ CoypuInstrumenter >> initializeMethodProxies [
 ]
 
 { #category : 'api' }
-CoypuInstrumenter >> instrument [
+PhizuraInstrumenter >> instrument [
 
 	self proxyVariables do: #install
 ]
 
 { #category : 'instrumentation' }
-CoypuInstrumenter >> proxyVariables [
+PhizuraInstrumenter >> proxyVariables [
 
 	self flag:
 		'IMPORTANT: Here one needs to return all the instances variables that hold a proxy.'.
@@ -77,7 +77,7 @@ CoypuInstrumenter >> proxyVariables [
 ]
 
 { #category : 'api' }
-CoypuInstrumenter >> uninstrument [
+PhizuraInstrumenter >> uninstrument [
 
 	self proxyVariables do: #uninstall
 ]

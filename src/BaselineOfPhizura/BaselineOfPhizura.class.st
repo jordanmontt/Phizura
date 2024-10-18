@@ -1,12 +1,12 @@
 Class {
-	#name : 'BaselineOfMpCoypuRecorder',
+	#name : 'BaselineOfPhizura',
 	#superclass : 'BaselineOf',
-	#category : 'BaselineOfMpCoypuRecorder',
-	#package : 'BaselineOfMpCoypuRecorder'
+	#category : 'BaselineOfPhizura',
+	#package : 'BaselineOfPhizura'
 }
 
 { #category : 'baselines' }
-BaselineOfMpCoypuRecorder >> baseline: spec [
+BaselineOfPhizura >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
@@ -17,10 +17,10 @@ BaselineOfMpCoypuRecorder >> baseline: spec [
 		"spec baseline: 'Coypu' with: [ spec repository: 'github://lucretiomsp/coypu:master' ]."
 
 		"Packages"
-		spec package: 'MpCoypuRecorder' with: [ spec requires: #( 'MethodProxies' "'Coypu'" 'NeoJSON' ) ].
+		spec package: 'Phizura' with: [ spec requires: #( 'MethodProxies' "'Coypu'" 'NeoJSON' ) ].
 
 		"Groups"
 		spec group: 'default' with: #( 'core' 'tests' ).
-		spec group: 'core' with: #( 'MpCoypuRecorder' ).
+		spec group: 'core' with: #( 'Phizura' ).
 		spec group: 'tests' with: #( ) ]
 ]

@@ -1,18 +1,18 @@
 Class {
-	#name : 'CoypuInstrumenterHandler',
+	#name : 'PhizuraInstrumenterHandler',
 	#superclass : 'MpHandler',
 	#instVars : [
 		'records',
 		'instrumentedMethod'
 	],
-	#category : 'MpCoypuRecorder',
-	#package : 'MpCoypuRecorder'
+	#category : 'Phizura',
+	#package : 'Phizura'
 }
 
 { #category : 'evaluating' }
-CoypuInstrumenterHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfObjects [
+PhizuraInstrumenterHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfObjects [
 
-	records add: (CoypuRecordEntry new
+	records add: (PhizuraRecordEntry new
 			 time: DateAndTime now;
 			 method: instrumentedMethod;
 			 receiver: anObject;
@@ -21,29 +21,29 @@ CoypuInstrumenterHandler >> beforeExecutionWithReceiver: anObject arguments: anA
 ]
 
 { #category : 'evaluating' }
-CoypuInstrumenterHandler >> beforeMethod [
+PhizuraInstrumenterHandler >> beforeMethod [
 
-	records add: (CoypuRecordEntry new
+	records add: (PhizuraRecordEntry new
 			 time: DateAndTime now;
 			 method: instrumentedMethod;
 			 yourself)
 ]
 
 { #category : 'initialization' }
-CoypuInstrumenterHandler >> initialize [ 
+PhizuraInstrumenterHandler >> initialize [ 
 
 	super initialize. 
 	records := OrderedCollection new
 ]
 
 { #category : 'accessing' }
-CoypuInstrumenterHandler >> instrumentedMethod: aMethod [
+PhizuraInstrumenterHandler >> instrumentedMethod: aMethod [
 
 	instrumentedMethod := aMethod
 ]
 
 { #category : 'accessing' }
-CoypuInstrumenterHandler >> records [
+PhizuraInstrumenterHandler >> records [
 
 	^ records
 ]

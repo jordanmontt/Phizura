@@ -1,5 +1,5 @@
 Class {
-	#name : 'CoypuRecordEntry',
+	#name : 'PhizuraRecordEntry',
 	#superclass : 'Object',
 	#instVars : [
 		'time',
@@ -7,60 +7,60 @@ Class {
 		'receiver',
 		'arguments'
 	],
-	#category : 'MpCoypuRecorder',
-	#package : 'MpCoypuRecorder'
+	#category : 'Phizura',
+	#package : 'Phizura'
 }
 
 { #category : 'accessing' }
-CoypuRecordEntry >> arguments [
+PhizuraRecordEntry >> arguments [
 
 	^ arguments
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> arguments: anObject [
+PhizuraRecordEntry >> arguments: anObject [
 
 	arguments := anObject
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> method [
+PhizuraRecordEntry >> method [
 
 	^ method
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> method: anObject [
+PhizuraRecordEntry >> method: anObject [
 
 	method := anObject
 ]
 
 { #category : 'printing' }
-CoypuRecordEntry >> printOn: aStream [
+PhizuraRecordEntry >> printOn: aStream [
 
 	aStream << method selector << ' -> ' << time asTime print24
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> receiver [
+PhizuraRecordEntry >> receiver [
 
 	^ receiver
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> receiver: anObject [
+PhizuraRecordEntry >> receiver: anObject [
 
 	receiver := anObject
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> time [
+PhizuraRecordEntry >> time [
 
 	^ time
 ]
 
 { #category : 'accessing' }
-CoypuRecordEntry >> time: aDateAndTime [
+PhizuraRecordEntry >> time: aDateAndTime [
 
 	time := aDateAndTime
 ]

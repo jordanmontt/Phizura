@@ -1,15 +1,15 @@
 Class {
-	#name : 'CoypuJSONExporter',
+	#name : 'PhizuraJSONExporter',
 	#superclass : 'Object',
 	#instVars : [
 		'recorder'
 	],
-	#category : 'MpCoypuRecorder',
-	#package : 'MpCoypuRecorder'
+	#category : 'Phizura',
+	#package : 'Phizura'
 }
 
 { #category : 'instance creation' }
-CoypuJSONExporter class >> onRecorder: aRecorder [
+PhizuraJSONExporter class >> onRecorder: aRecorder [
 
 	^ self new
 		  recorder: aRecorder;
@@ -17,7 +17,7 @@ CoypuJSONExporter class >> onRecorder: aRecorder [
 ]
 
 { #category : 'api - exporting' }
-CoypuJSONExporter >> export [
+PhizuraJSONExporter >> export [
 
 	| fileName writeStream jsonObjects |
 	fileName :=  String streamContents: [ :stream | stream << 'coypu-record-session' <<
@@ -47,7 +47,7 @@ CoypuJSONExporter >> export [
 ]
 
 { #category : 'api - exporting' }
-CoypuJSONExporter >> recorder: aRecorder [
+PhizuraJSONExporter >> recorder: aRecorder [
 
 	recorder := aRecorder
 ]
