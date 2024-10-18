@@ -1,7 +1,7 @@
 Extension { #name : 'MpMethodProxy' }
 
 { #category : '*Phizura' }
-MpMethodProxy class >> coypuOnMethod: aMethod handlerClass: aHandlerClass [
+MpMethodProxy class >> phizuraOnMethod: aMethod handlerClass: aHandlerClass [
 
 	^ self new
 		  proxyMethod: aMethod;

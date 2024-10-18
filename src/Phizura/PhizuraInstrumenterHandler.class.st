@@ -13,19 +13,10 @@ Class {
 PhizuraInstrumenterHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfObjects [
 
 	records add: (PhizuraRecordEntry new
-			 time: DateAndTime now;
-			 method: instrumentedMethod;
-			 receiver: anObject;
-			 arguments: anArrayOfObjects;
-			 yourself)
-]
-
-{ #category : 'evaluating' }
-PhizuraInstrumenterHandler >> beforeMethod [
-
-	records add: (PhizuraRecordEntry new
-			 time: DateAndTime now;
-			 method: instrumentedMethod;
+			 time: DateAndTime now asString;
+			 method: instrumentedMethod name;
+			 receiver: anObject asString;
+			 arguments: anArrayOfObjects asString;
 			 yourself)
 ]
 

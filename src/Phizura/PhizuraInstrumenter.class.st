@@ -40,16 +40,16 @@ PhizuraInstrumenter >> initialize [
 { #category : 'initialization' }
 PhizuraInstrumenter >> initializeMethodProxies [
 
-	proxyActiveDSP := MpMethodProxy coypuOnMethod: Performance >> #activeDSP: handlerClass: self handlerClass.
-	proxyFreq := MpMethodProxy coypuOnMethod: Performance >> #freq: handlerClass: self handlerClass.
-	proxyUniqueInstance := MpMethodProxy coypuOnMethod: Performance class >> #uniqueInstance handlerClass: self handlerClass.
-	proxyPerformer := MpMethodProxy coypuOnMethod: Performance >> #performer handlerClass: self handlerClass.
-	proxyAtPut := MpMethodProxy coypuOnMethod: Performance >> #at:put: handlerClass: self handlerClass.
-	proxyMute := MpMethodProxy coypuOnMethod: Performance >> #mute: handlerClass: self handlerClass.
-	proxyMuteAll := MpMethodProxy coypuOnMethod: Performance >> #muteAll handlerClass: self handlerClass.
-	proxySolo := MpMethodProxy coypuOnMethod: Performance >> #solo: handlerClass: self handlerClass.
-	proxyPlay := MpMethodProxy coypuOnMethod: Performance >> #play handlerClass: self handlerClass.
-	proxyStop := MpMethodProxy coypuOnMethod: Performance >> #stop handlerClass: self handlerClass
+	proxyActiveDSP := MpMethodProxy phizuraOnMethod: Performance >> #activeDSP: handlerClass: self handlerClass.
+	proxyFreq := MpMethodProxy phizuraOnMethod: Performance >> #freq: handlerClass: self handlerClass.
+	proxyUniqueInstance := MpMethodProxy phizuraOnMethod: Performance class >> #uniqueInstance handlerClass: self handlerClass.
+	proxyPerformer := MpMethodProxy phizuraOnMethod: Performance >> #performer handlerClass: self handlerClass.
+	proxyAtPut := MpMethodProxy phizuraOnMethod: Performance >> #at:put: handlerClass: self handlerClass.
+	proxyMute := MpMethodProxy phizuraOnMethod: Performance >> #mute: handlerClass: self handlerClass.
+	proxyMuteAll := MpMethodProxy phizuraOnMethod: Performance >> #muteAll handlerClass: self handlerClass.
+	proxySolo := MpMethodProxy phizuraOnMethod: Performance >> #solo: handlerClass: self handlerClass.
+	proxyPlay := MpMethodProxy phizuraOnMethod: Performance >> #play handlerClass: self handlerClass.
+	proxyStop := MpMethodProxy phizuraOnMethod: Performance >> #stop handlerClass: self handlerClass
 ]
 
 { #category : 'api' }

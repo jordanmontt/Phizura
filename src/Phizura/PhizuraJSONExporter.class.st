@@ -20,30 +20,33 @@ PhizuraJSONExporter class >> onRecorder: aRecorder [
 PhizuraJSONExporter >> export [
 
 	| fileName writeStream jsonObjects |
-	fileName :=  String streamContents: [ :stream | stream << 'coypu-record-session' <<
-		DateAndTime now monthAbbreviation. 
-		DateAndTime now dayOfMonth printOn: stream.
-		DateAndTime now hour24 printOn: stream.
-		DateAndTime now minute printOn: stream.
-		stream << '.json' ].
+	fileName :=  self generateJSONFileName.
 
 	jsonObjects := recorder allRecords collect: [ :e |
 		Dictionary new
-			at: #method put: e method name;
-			at: #timestamp put: e time asString;
-			at: #receiver put: e receiver asString;
-			at: #arguments put: e arguments asString;
+			at: #method put: e method;
+			at: #timestamp put: e time;
+			at: #receiver put: e receiver;
+			at: #arguments put: e arguments;
 			yourself ].
 
-	writeStream := fileName asFileReference createFile writeStream.
-	
-	"jsonObjects doWithIndex: [ :jsonMap :index |
-		writeStream << (NeoJSONWriter toStringPretty: jsonMap).
-		index = jsonObjects size ifFalse: [ writeStream << ',' << String cr ] ]."
-	
+	writeStream := fileName asFileReference createFile writeStream.	
 	(NeoJSONWriter on: writeStream) nextPut: jsonObjects.
-
 	writeStream close
+]
+
+{ #category : 'api - exporting' }
+PhizuraJSONExporter >> generateJSONFileName [
+
+	^ String streamContents: [ :stream |
+		  stream << 'phizura-' << DateAndTime now monthAbbreviation << '-'.
+		  DateAndTime now dayOfMonth printOn: stream.
+		  stream << '-'.
+		  DateAndTime now hour24 printOn: stream.
+		  stream << 'h'.
+		  DateAndTime now minute printOn: stream.
+		  stream << 'm'.
+		  stream << '.json' ]
 ]
 
 { #category : 'api - exporting' }
