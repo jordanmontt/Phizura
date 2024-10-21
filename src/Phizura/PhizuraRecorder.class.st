@@ -2,7 +2,8 @@ Class {
 	#name : 'PhizuraRecorder',
 	#superclass : 'Object',
 	#instVars : [
-		'instrumenter'
+		'instrumenter',
+		'records'
 	],
 	#category : 'Phizura',
 	#package : 'Phizura'
@@ -16,10 +17,16 @@ PhizuraRecorder class >> forceUnrecord [
 	MpMethodProxy allInstances do: #uninstall
 ]
 
+{ #category : 'api actions' }
+PhizuraRecorder >> addRecord: aRecord [
+
+	^ records add: aRecord
+]
+
 { #category : 'inspector' }
 PhizuraRecorder >> allRecords [
 
-	^ instrumenter allRecords
+	^ records
 ]
 
 { #category : 'api - exporting' }
@@ -32,7 +39,8 @@ PhizuraRecorder >> exportAsJSON [
 PhizuraRecorder >> initialize [
 
 	super initialize.
-	instrumenter := PhizuraInstrumenter new
+	instrumenter := PhizuraInstrumenter onRecorder: self.
+	records := OrderedCollection new
 ]
 
 { #category : 'inspector' }

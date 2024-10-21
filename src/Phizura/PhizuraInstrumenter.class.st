@@ -2,6 +2,7 @@ Class {
 	#name : 'PhizuraInstrumenter',
 	#superclass : 'Object',
 	#instVars : [
+		'recorder',
 		'proxyActiveDSP',
 		'proxyFreq',
 		'proxyUniqueInstance',
@@ -11,23 +12,32 @@ Class {
 		'proxySolo',
 		'proxyPlay',
 		'proxyStop',
-		'proxyAtPut'
+		'proxyAtPut',
+		'proxyPerformerArg'
 	],
 	#category : 'Phizura',
 	#package : 'Phizura'
 }
 
-{ #category : 'api' }
-PhizuraInstrumenter >> allRecords [
-
-	^ (self proxyVariables flatCollect: [ :each | each handler records ]) sorted: [ :a :b |
-		  a time < b time ]
+{ #category : 'instance creation' }
+PhizuraInstrumenter class >> onRecorder: aRecorder [
+	
+	^ self basicNew
+		recorder: aRecorder;
+		initialize;
+		yourself
 ]
 
 { #category : 'instrumentation' }
-PhizuraInstrumenter >> handlerClass [
+PhizuraInstrumenter >> basicArgHandler [
 
-	^ PhizuraInstrumenterHandler
+	^ PhizuraBasicArgHandler onRecorder: recorder
+]
+
+{ #category : 'instrumentation' }
+PhizuraInstrumenter >> basicHandler [
+
+	^ PhizuraBasicHandler onRecorder: recorder
 ]
 
 { #category : 'initialization' }
@@ -40,16 +50,17 @@ PhizuraInstrumenter >> initialize [
 { #category : 'initialization' }
 PhizuraInstrumenter >> initializeMethodProxies [
 
-	proxyActiveDSP := MpMethodProxy phizuraOnMethod: Performance >> #activeDSP: handlerClass: self handlerClass.
-	proxyFreq := MpMethodProxy phizuraOnMethod: Performance >> #freq: handlerClass: self handlerClass.
-	proxyUniqueInstance := MpMethodProxy phizuraOnMethod: Performance class >> #uniqueInstance handlerClass: self handlerClass.
-	proxyPerformer := MpMethodProxy phizuraOnMethod: Performance >> #performer handlerClass: self handlerClass.
-	proxyAtPut := MpMethodProxy phizuraOnMethod: Performance >> #at:put: handlerClass: self handlerClass.
-	proxyMute := MpMethodProxy phizuraOnMethod: Performance >> #mute: handlerClass: self handlerClass.
-	proxyMuteAll := MpMethodProxy phizuraOnMethod: Performance >> #muteAll handlerClass: self handlerClass.
-	proxySolo := MpMethodProxy phizuraOnMethod: Performance >> #solo: handlerClass: self handlerClass.
-	proxyPlay := MpMethodProxy phizuraOnMethod: Performance >> #play handlerClass: self handlerClass.
-	proxyStop := MpMethodProxy phizuraOnMethod: Performance >> #stop handlerClass: self handlerClass
+	proxyActiveDSP := MpMethodProxy phizuraOnMethod: Performance >> #activeDSP: handler: self basicArgHandler.
+	proxyFreq := MpMethodProxy phizuraOnMethod: Performance >> #freq: handler:  self basicArgHandler.
+	proxyUniqueInstance := MpMethodProxy phizuraOnMethod: Performance class >> #uniqueInstance handler: (PhizuraBasicSingletonHandler onRecorder: recorder).
+	proxyPerformerArg := MpMethodProxy phizuraOnMethod: Performance >> #performer: handler: (PhizuraPerformerArgHandler onRecorder: recorder).
+	proxyPerformer := MpMethodProxy phizuraOnMethod: Performance >> #performer handler: self basicHandler.
+	proxyAtPut := MpMethodProxy phizuraOnMethod: Performance >> #at:put: handler: (PhizuraAtPutHandler onRecorder: recorder).
+	proxyMute := MpMethodProxy phizuraOnMethod: Performance >> #mute: handler:  self basicArgHandler.
+	proxyMuteAll := MpMethodProxy phizuraOnMethod: Performance >> #muteAll handler: self basicHandler.
+	proxySolo := MpMethodProxy phizuraOnMethod: Performance >> #solo: handler: self basicArgHandler.
+	proxyPlay := MpMethodProxy phizuraOnMethod: Performance >> #play handler: self basicHandler.
+	proxyStop := MpMethodProxy phizuraOnMethod: Performance >> #stop handler: self basicHandler.
 ]
 
 { #category : 'api' }
@@ -68,12 +79,19 @@ PhizuraInstrumenter >> proxyVariables [
 		  proxyFreq.
 		  proxyUniqueInstance.
 		  proxyPerformer.
+		  proxyPerformerArg.
 		  proxyMute.
 		  proxyMuteAll.
 		  proxySolo.
 		  proxyPlay.
 		  proxyStop.
 		  proxyAtPut }
+]
+
+{ #category : 'api' }
+PhizuraInstrumenter >> recorder: aRecorder [
+
+	recorder := aRecorder
 ]
 
 { #category : 'api' }

@@ -5,22 +5,28 @@ Class {
 		'time',
 		'method',
 		'receiver',
-		'arguments'
+		'message'
 	],
 	#category : 'Phizura',
 	#package : 'Phizura'
 }
 
-{ #category : 'accessing' }
-PhizuraRecordEntry >> arguments [
+{ #category : 'printing' }
+PhizuraRecordEntry >> emitCode [
 
-	^ arguments
+	^ String streamContents: [ :aStream | aStream << receiver << ' ' << message ]
 ]
 
 { #category : 'accessing' }
-PhizuraRecordEntry >> arguments: anObject [
+PhizuraRecordEntry >> message [
 
-	arguments := anObject
+	^ message
+]
+
+{ #category : 'accessing' }
+PhizuraRecordEntry >> message: aString [
+
+	message := aString
 ]
 
 { #category : 'accessing' }
@@ -38,7 +44,7 @@ PhizuraRecordEntry >> method: anObject [
 { #category : 'printing' }
 PhizuraRecordEntry >> printOn: aStream [
 
-	aStream << method selector << ' -> ' << time asTime print24
+	aStream << self emitCode
 ]
 
 { #category : 'accessing' }
