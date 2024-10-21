@@ -6,7 +6,7 @@ Phizura is a [Coypu](https://github.com/lucretiomsp/Coypu) recorder implementati
 
 ```Smalltalk
 Metacello new
-	baseline: 'PhizuraRecorder';
+	baseline: 'Phizura';
 	repository: 'github://jordanmontt/Phizura:main';
 	load.
 ```
@@ -15,13 +15,13 @@ Metacello new
 
 ```Smalltalk
 recorder := PhizuraRecorder new.
-recorder record "start recording".
+recorder record. "start recording"
 
 "Coypu code here"
 
-recorder unrecord "stop recording".
+recorder unrecord. "stop recording"
 
-"To import the records as a JSON"
+"To export the records as a JSON"
 recorder exportAsJSON.
 ```
 
