@@ -3,7 +3,6 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'time',
-		'method',
 		'receiver',
 		'message'
 	],
@@ -28,18 +27,6 @@ PhizuraRecordEntry >> message [
 PhizuraRecordEntry >> message: aString [
 
 	message := aString
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> method [
-
-	^ method
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> method: anObject [
-
-	method := anObject
 ]
 
 { #category : 'printing' }

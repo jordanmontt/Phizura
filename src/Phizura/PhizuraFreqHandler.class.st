@@ -9,5 +9,5 @@ Class {
 { #category : 'evaluating' }
 PhizuraFreqHandler >> messageString: anInt [
 
-	^ anInt revertBpm asString
+	^ instrumentedMethod selector , ' ' , anInt revertBpm asString , ' bpm'
 ]

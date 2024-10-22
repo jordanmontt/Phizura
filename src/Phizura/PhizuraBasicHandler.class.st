@@ -23,7 +23,6 @@ PhizuraBasicHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayO
 
 	recorder addRecord: (PhizuraRecordEntry new
 			 time: DateAndTime now asString;
-			 method: self methodName;
 			 receiver: (self receiverString: anObject);
 			 message: (self messageString: anArrayOfObjects);
 			 yourself)
@@ -39,12 +38,6 @@ PhizuraBasicHandler >> instrumentedMethod: aMethod [
 PhizuraBasicHandler >> messageString: anArray [
 
 	^ instrumentedMethod selector
-]
-
-{ #category : 'evaluating' }
-PhizuraBasicHandler >> methodName [
-
-	^ instrumentedMethod name
 ]
 
 { #category : 'evaluating' }
