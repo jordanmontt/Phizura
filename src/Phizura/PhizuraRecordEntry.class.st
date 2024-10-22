@@ -7,8 +7,9 @@ Class {
 		'receiver',
 		'message'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Core',
+	#package : 'Phizura',
+	#tag : 'Core'
 }
 
 { #category : 'printing' }

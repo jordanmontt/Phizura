@@ -5,8 +5,9 @@ Class {
 		'instrumenter',
 		'records'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Core',
+	#package : 'Phizura',
+	#tag : 'Core'
 }
 
 { #category : 'api' }

@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'recorder'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Exporters',
+	#package : 'Phizura',
+	#tag : 'Exporters'
 }
 
 { #category : 'instance creation' }

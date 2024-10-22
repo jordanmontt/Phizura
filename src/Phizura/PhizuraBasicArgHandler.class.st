@@ -1,8 +1,9 @@
 Class {
 	#name : 'PhizuraBasicArgHandler',
 	#superclass : 'PhizuraBasicHandler',
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Handlers',
+	#package : 'Phizura',
+	#tag : 'Handlers'
 }
 
 { #category : 'evaluating' }

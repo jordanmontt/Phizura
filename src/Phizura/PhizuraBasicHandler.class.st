@@ -5,8 +5,9 @@ Class {
 		'instrumentedMethod',
 		'recorder'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Handlers',
+	#package : 'Phizura',
+	#tag : 'Handlers'
 }
 
 { #category : 'instance creation' }

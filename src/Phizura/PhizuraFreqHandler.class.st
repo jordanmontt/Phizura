@@ -1,5 +1,5 @@
 Class {
-	#name : 'PhizuraPerformerArgHandler',
+	#name : 'PhizuraFreqHandler',
 	#superclass : 'PhizuraBasicHandler',
 	#category : 'Phizura-Handlers',
 	#package : 'Phizura',
@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'evaluating' }
-PhizuraPerformerArgHandler >> messageString: anArray [
+PhizuraFreqHandler >> messageString: anInt [
 
-	^ 'performer: ' , anArray first class name , ' new'
+	^ anInt revertBpm asString
 ]

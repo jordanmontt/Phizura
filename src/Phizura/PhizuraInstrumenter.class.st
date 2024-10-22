@@ -15,8 +15,9 @@ Class {
 		'proxyAtPut',
 		'proxyPerformerArg'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Instrumentation',
+	#package : 'Phizura',
+	#tag : 'Instrumentation'
 }
 
 { #category : 'instance creation' }
@@ -52,7 +53,6 @@ PhizuraInstrumenter >> initializeMethodProxies [
 
 	proxyActiveDSP := MpMethodProxy phizuraOnMethod: Performance >> #activeDSP: handler: self basicArgHandler.
 	proxyFreq := MpMethodProxy phizuraOnMethod: Performance >> #freq: handler:  self basicArgHandler.
-	proxyUniqueInstance := MpMethodProxy phizuraOnMethod: Performance class >> #uniqueInstance handler: (PhizuraBasicSingletonHandler onRecorder: recorder).
 	proxyPerformerArg := MpMethodProxy phizuraOnMethod: Performance >> #performer: handler: (PhizuraPerformerArgHandler onRecorder: recorder).
 	proxyPerformer := MpMethodProxy phizuraOnMethod: Performance >> #performer handler: self basicHandler.
 	proxyAtPut := MpMethodProxy phizuraOnMethod: Performance >> #at:put: handler: (PhizuraAtPutHandler onRecorder: recorder).
