@@ -5,15 +5,13 @@ Class {
 		'recorder',
 		'proxyActiveDSP',
 		'proxyFreq',
-		'proxyUniqueInstance',
-		'proxyPerformer',
 		'proxyMute',
 		'proxyMuteAll',
 		'proxySolo',
 		'proxyPlay',
 		'proxyStop',
 		'proxyAtPut',
-		'proxyPerformerArg'
+		'proxyPerformer'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
@@ -55,7 +53,7 @@ PhizuraInstrumenter >> initializeMethodProxies [
 		phizuraOnMethod: Performance >> #activeDSP: handler: self basicArgHandler.
 	proxyFreq := MpMethodProxy
 		phizuraOnMethod: Performance >> #freq: handler:  (PhizuraFreqHandler onRecorder: recorder).
-	proxyPerformerArg := MpMethodProxy
+	proxyPerformer := MpMethodProxy
 		phizuraOnMethod: Performance >> #performer: handler: (PhizuraPerformerArgHandler onRecorder: recorder).
 	proxyAtPut := MpMethodProxy
 		phizuraOnMethod: Performance >> #at:put: handler: (PhizuraAtPutHandler onRecorder: recorder).
@@ -85,9 +83,7 @@ PhizuraInstrumenter >> proxyVariables [
 	^ {
 		  proxyActiveDSP.
 		  proxyFreq.
-		  proxyUniqueInstance.
 		  proxyPerformer.
-		  proxyPerformerArg.
 		  proxyMute.
 		  proxyMuteAll.
 		  proxySolo.

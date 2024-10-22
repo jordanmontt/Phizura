@@ -9,5 +9,5 @@ Class {
 { #category : 'evaluating' }
 PhizuraPerformerArgHandler >> messageString: anArray [
 
-	^ 'performer: ' , anArray first class name , ' new'
+	^ instrumentedMethod selector , ' ' , anArray first class name , ' new'
 ]

@@ -12,14 +12,23 @@ Class {
 	#tag : 'Handlers'
 }
 
+{ #category : 'running' }
+PhizuraAtPutHandlerTest >> setUp [
+
+	super setUp.
+
+	handler := PhizuraAtPutHandler new
+		           instrumentedMethod: Performance >> #at:put:;
+		           yourself
+]
+
 { #category : 'tests' }
 PhizuraAtPutHandlerTest >> testEmitCode [
 
 	| result |
-	handler := PhizuraFreqHandler new
-		           instrumentedMethod: Performance >> #freq:;
-		           yourself.
-	result := (handler receiverString: Performance uniqueInstance) , ' '
-	          , (handler messageString: 162 bpm).
-	self assert: result equals: 'Performance uniqueInstance freq: 162 bpm'
+	result := PhizuraRecordEntry new
+		          receiver: (handler receiverString: Performance uniqueInstance);
+		          message: (handler messageString: {  #kick . 162 });
+		          emitCode.
+	self assert: result equals: 'Performance uniqueInstance at: #kick put: 162'
 ]
