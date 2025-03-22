@@ -66,3 +66,9 @@ PhizuraRecorder >> unrecord [
 
 	instrumenter uninstrument
 ]
+
+{ #category : 'api - statistics' }
+PhizuraRecorder >> generateStatistics [
+    "Generate statistics from the current recording"
+    ^ PhizuraStatistics fromRecords: self allRecords
+]
