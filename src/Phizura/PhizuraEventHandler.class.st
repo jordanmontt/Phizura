@@ -21,10 +21,11 @@ PhizuraEventHandler class >> onRecorder: aRecorder [
 PhizuraEventHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfArguments [
 
 	recorder addRecord: (PhizuraBasicRecordEntry new
-			 time: DateAndTime now asString;
+			 time: DateAndTime now;
 			 message: (self messageString: anArrayOfArguments);
 			 yourself).
-anArrayOfArguments first toLocal: 'evaluatedCommand'.
+	
+	anArrayOfArguments first toLocal: 'evaluatedCommand'.
 
 	
 ]
