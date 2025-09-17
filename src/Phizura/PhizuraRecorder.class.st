@@ -45,7 +45,7 @@ PhizuraRecorder >> initialize [
 ]
 
 { #category : 'inspector' }
-PhizuraRecorder >> inspectRecords [
+PhizuraRecorder >> inspectRecords: aBuilder [
 
 	<inspectorPresentationOrder: 0 title: 'records'>
 	| allRecords |
