@@ -47,6 +47,7 @@ PhizuraBasicHandler >> receiverString: anObject [
 ]
 
 { #category : 'accessing' }
-PhizuraBasicHandler >> recorder: aRecorder [ 
+PhizuraBasicHandler >> recorder: aRecorder [
+
 	recorder := aRecorder
 ]

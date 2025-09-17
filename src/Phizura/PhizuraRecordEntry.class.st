@@ -1,10 +1,8 @@
 Class {
 	#name : 'PhizuraRecordEntry',
-	#superclass : 'Object',
+	#superclass : 'PhizuraBasicRecordEntry',
 	#instVars : [
-		'time',
-		'receiver',
-		'message'
+		'receiver'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
@@ -15,18 +13,6 @@ Class {
 PhizuraRecordEntry >> emitCode [
 
 	^ String streamContents: [ :aStream | aStream << receiver << ' ' << message ]
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> message [
-
-	^ message
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> message: aString [
-
-	message := aString
 ]
 
 { #category : 'printing' }
@@ -45,16 +31,4 @@ PhizuraRecordEntry >> receiver [
 PhizuraRecordEntry >> receiver: anObject [
 
 	receiver := anObject
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> time [
-
-	^ time
-]
-
-{ #category : 'accessing' }
-PhizuraRecordEntry >> time: aDateAndTime [
-
-	time := aDateAndTime
 ]
