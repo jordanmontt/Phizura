@@ -9,7 +9,7 @@ Class {
 { #category : 'private commands' }
 PhizuraPlaygroundPagePresenter class >> baseToolbarCommands [
 
-    ^ super baseToolbarCommands , { PhizuraRecordCommand . PhizuraStopRecordCommand . PhizuraCleanRecorderCommand }
+    ^ super baseToolbarCommands , { PhizuraRecordCommand . PhizuraStopRecordCommand . PhizuraCleanRecorderCommand . PhizuraInspectRecorderCommand }
 ]
 
 { #category : 'initialization' }
