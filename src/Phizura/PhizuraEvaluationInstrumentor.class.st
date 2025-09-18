@@ -21,8 +21,8 @@ PhizuraEvaluationInstrumentor class >> onRecorder: aRecorder [
 { #category : 'initialization' }
 PhizuraEvaluationInstrumentor >> initializeMethodProxies [
 
-	coypuEvaluate := MpMethodProxy
-		onMethod: SpCodeMooflodEvaluateCommand >> #executeCode:
-		handler: self phizuraHandler.
-	proxyVariables add: coypuEvaluate
+    coypuEvaluate := MpMethodProxy
+			onMethod: SpCodeSelectionCommand >> #evaluate:andDo:
+    		handler: self phizuraHandler.
+    proxyVariables add: coypuEvaluate
 ]
