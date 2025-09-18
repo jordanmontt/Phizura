@@ -8,10 +8,21 @@ Class {
 	#package : 'Phizura'
 }
 
+{ #category : 'accessing' }
+PhizuraKeyEventRecordEntry >> emitOnEmitter: emitter onStream: aStream [
+
+    emitter emitKeyStroke: self on: aStream
+]
+
 { #category : 'testing' }
 PhizuraKeyEventRecordEntry >> isKeyEntryRecord [
 
     ^ true
+]
+
+{ #category : 'accessing' }
+PhizuraKeyEventRecordEntry >> key [
+	^ key
 ]
 
 { #category : 'accessing' }

@@ -34,9 +34,7 @@ PhizuraRecorder >> allRecords [
 { #category : 'printing' }
 PhizuraRecorder >> emitCode [
 
-    | evaluationEntries |
-    evaluationEntries := records reject: #isKeyEntryRecord.
-    ^ (PhizuraCodeEmitter onRecords: evaluationEntries) emitCode
+    ^ (PhizuraCodeEmitter onRecords: records) emitCode
 ]
 
 { #category : 'api - exporting' }

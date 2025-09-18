@@ -16,6 +16,12 @@ PhizuraEvaluationRecordEntry >> emitCode [
 ]
 
 { #category : 'accessing' }
+PhizuraEvaluationRecordEntry >> emitOnEmitter: emitter onStream: aStream [
+
+    emitter emitExpression: self on: aStream
+]
+
+{ #category : 'accessing' }
 PhizuraEvaluationRecordEntry >> expression [
 
 	^ expression

@@ -8,6 +8,12 @@ Class {
 	#package : 'Phizura'
 }
 
+{ #category : 'accessing' }
+PhizuraBasicRecordEntry >> emitOnEmitter: emitter onStream: aStream [
+
+    
+]
+
 { #category : 'testing' }
 PhizuraBasicRecordEntry >> isKeyEntryRecord [
 

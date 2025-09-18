@@ -24,18 +24,39 @@ PhizuraCodeEmitter >> emitCode [
 	previousTime := records first time.
 	generatedCode := WriteStream on: String new.
 
-	self writeExpression: records first on: generatedCode.
+	records first emitOnEmitter: self onStream: generatedCode.
 	
 	records allButFirst doWithIndex: [ :record :index |
 		delay := record time - previousTime.
 		
 		self writeDelay: delay on: generatedCode.
 		generatedCode << String cr.
-		self writeExpression: record on: generatedCode.
+		record emitOnEmitter: self onStream: generatedCode.
 	
 		previousTime := record time ].
 	
 	^ generatedCode contents
+]
+
+{ #category : 'private' }
+PhizuraCodeEmitter >> emitExpression: record on: stream [
+
+	| cleanedExpression |
+	cleanedExpression := record expression trimBoth.
+	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
+	
+	stream << cleanedExpression.
+	stream << String cr.
+	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
+	stream << String cr
+]
+
+{ #category : 'private' }
+PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
+
+    record key value printOn: stream.
+    stream << ' toLocal: ''keyPressed''.'.
+    stream << String cr
 ]
 
 { #category : 'private' }
@@ -61,17 +82,4 @@ PhizuraCodeEmitter >> records: anArray [
 PhizuraCodeEmitter >> writeDelay: aDelay on: stream [
 
     stream << aDelay totalSeconds asFloat asString << ' seconds wait.' << String cr
-]
-
-{ #category : 'private' }
-PhizuraCodeEmitter >> writeExpression: record on: stream [
-
-	| cleanedExpression |
-	cleanedExpression := record expression trimBoth.
-	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
-	
-	stream << cleanedExpression.
-	stream << String cr.
-	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
-	stream << String cr
 ]
