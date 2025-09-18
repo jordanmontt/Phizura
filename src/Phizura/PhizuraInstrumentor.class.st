@@ -3,35 +3,25 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'recorder',
-		'coypuEvaluate'
+		'proxyVariables'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
 	#tag : 'Instrumentation'
 }
 
-{ #category : 'instance creation' }
-PhizuraInstrumentor class >> onRecorder: aRecorder [
-
-	^ self basicNew
-		  recorder: aRecorder;
-		  initialize;
-		  yourself
-]
-
 { #category : 'initialization' }
 PhizuraInstrumentor >> initialize [
 
 	super initialize.
-	self initializeMethodProxies
+	self initializeProxyVariables.
+"	self initializeMethodProxies"
 ]
 
 { #category : 'initialization' }
-PhizuraInstrumentor >> initializeMethodProxies [
+PhizuraInstrumentor >> initializeProxyVariables [
 
-	coypuEvaluate := MpMethodProxy
-		onMethod: SpCodeMooflodEvaluateCommand >> #executeCode:
-		handler: self phizuraHandler
+    proxyVariables := OrderedCollection new
 ]
 
 { #category : 'api' }
@@ -48,10 +38,9 @@ PhizuraInstrumentor >> phizuraHandler [
 ]
 
 { #category : 'instrumentation' }
-PhizuraInstrumentor >> proxyVariables [ self flag:
+PhizuraInstrumentor >> proxyVariables [
 
-	'IMPORTANT: Here one needs to return all the instances variables that hold a proxy.'.
-	^ { coypuEvaluate }
+	^ proxyVariables 
 ]
 
 { #category : 'accessing' }

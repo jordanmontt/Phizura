@@ -6,6 +6,19 @@ Class {
 	#tag : 'Playground'
 }
 
+{ #category : 'private commands' }
+PhizuraPlaygroundPagePresenter class >> baseToolbarCommands [
+
+    ^ super baseToolbarCommands , { PhizuraRecordCommand . PhizuraStopRecordCommand . PhizuraCleanRecorderCommand }
+]
+
+{ #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> connectPresenters [
+
+    super connectPresenters.
+    self recordKeyStrokes
+]
+
 { #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> initializePresenters [
 
@@ -14,4 +27,14 @@ PhizuraPlaygroundPagePresenter >> initializePresenters [
     text interactionModel: (PhizuraPlaygroundInteractionModel new
              bindingToSelf: self;
              yourself)
+]
+
+{ #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> recordKeyStrokes [
+
+    self text eventHandler whenKeyUpDo: [ :event |
+            PhiRecorderInstance addRecord: (PhizuraKeyEventRecordEntry new
+                     key: event key;
+                     time: DateAndTime now;
+                     yourself) ]
 ]

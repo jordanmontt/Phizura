@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'instrumenter',
-		'records'
+		'records',
+		'isActivated'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
@@ -21,7 +22,7 @@ PhizuraRecorder class >> forceUnrecord [
 { #category : 'api actions' }
 PhizuraRecorder >> addRecord: aRecord [
 
-	^ records add: aRecord
+    isActivated ifTrue: [ records add: aRecord ]
 ]
 
 { #category : 'inspector' }
@@ -33,7 +34,9 @@ PhizuraRecorder >> allRecords [
 { #category : 'printing' }
 PhizuraRecorder >> emitCode [
 
-    ^ (PhizuraCodeEmitter onRecords: records) emitCode
+    | evaluationEntries |
+    evaluationEntries := records reject: #isKeyEntryRecord.
+    ^ (PhizuraCodeEmitter onRecords: evaluationEntries) emitCode
 ]
 
 { #category : 'api - exporting' }
@@ -45,9 +48,10 @@ PhizuraRecorder >> exportAsJSON [
 { #category : 'initialization' }
 PhizuraRecorder >> initialize [
 
-	super initialize.
-	instrumenter := PhizuraInstrumentor onRecorder: self.
-	records := OrderedCollection new
+    super initialize.
+    instrumenter := PhizuraEvaluationInstrumentor onRecorder: self.
+    records := OrderedCollection new.
+    isActivated := false
 ]
 
 { #category : 'inspector' }
@@ -64,11 +68,13 @@ PhizuraRecorder >> inspectRecords: aBuilder [
 { #category : 'api actions' }
 PhizuraRecorder >> record [
 
-	instrumenter instrument
+    instrumenter instrument.
+    isActivated := true
 ]
 
 { #category : 'api actions' }
 PhizuraRecorder >> stopRecording [
 
-	instrumenter uninstrument
+    isActivated := false.
+    instrumenter uninstrument
 ]

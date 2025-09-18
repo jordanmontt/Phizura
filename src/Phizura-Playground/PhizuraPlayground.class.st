@@ -1,10 +1,19 @@
 Class {
 	#name : 'PhizuraPlayground',
 	#superclass : 'Object',
+	#classInstVars : [
+		'playground'
+	],
 	#category : 'Phizura-Playground-Playground',
 	#package : 'Phizura-Playground',
 	#tag : 'Playground'
 }
+
+{ #category : 'class initialization' }
+PhizuraPlayground class >> initialize [
+
+    Smalltalk globals at: #PhiRecorderInstance put: PhizuraRecorder new
+]
 
 { #category : 'as yet unclassified' }
 PhizuraPlayground class >> menuCommandOn: aBuilder [ 
@@ -15,11 +24,14 @@ PhizuraPlayground class >> menuCommandOn: aBuilder [
 		icon: (self iconNamed: #smallNew);
 		keyText: 'o, h';
 		help: 'Phizura playground is a special Playground to record Coypu.';
-		action: [ self openPhizuraPlayground ]
+		action: [ self open ]
 ]
 
 { #category : 'api' }
-PhizuraPlayground class >> openPhizuraPlayground [
+PhizuraPlayground class >> open [
 
-    ^ PhizuraPlaygroundPresenter new open
+    PhiRecorderInstance stopRecording.
+
+    playground := PhizuraPlaygroundPresenter new.
+    playground open
 ]

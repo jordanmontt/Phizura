@@ -24,7 +24,7 @@ PhizuraHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfArgu
 	"We instrument a method that we know that it has one argument."
 	argument := anArrayOfArguments first.
 
-	recorder addRecord: (PhizuraRecordEntry new
+	recorder addRecord: (PhizuraEvaluationRecordEntry new
 			 time: DateAndTime now;
 			 expression: argument;
 			 yourself)
