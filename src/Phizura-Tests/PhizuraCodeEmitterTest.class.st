@@ -43,7 +43,7 @@ ep playFor: 512 bars.
 2.0 seconds wait.
 
 ''0202'' hexBeat to: #snare.
-''''0202'' hexBeat to: #snare.'' toLocal: ''evaluatedCommand''.
+''''''0202'''' hexBeat to: #snare.'' toLocal: ''evaluatedCommand''.
 '.
     self assert: codeEmitter emitCode equals: expected
 ]
@@ -55,6 +55,20 @@ PhizuraCodeEmitterTest >> testEmitCodeOneRecord [
     codeEmitter records: (fixture recordsUpTo: 1).
     expected := 'ep := EcoPhausto new.
 ''ep := EcoPhausto new.'' toLocal: ''evaluatedCommand''.
+'.
+    self assert: codeEmitter emitCode equals: expected
+]
+
+{ #category : 'tests' }
+PhizuraCodeEmitterTest >> testEmitCodeSingleQuotesExample [
+
+    | expected |
+    codeEmitter records: { (PhizuraRecordEntry new
+             expression: '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio';
+             time: DateAndTime now) }.
+
+    expected := '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio.
+''''''1 , 2 , 3 , ~ '''' asDirtNotes to: #casio.'' toLocal: ''evaluatedCommand''.
 '.
     self assert: codeEmitter emitCode equals: expected
 ]

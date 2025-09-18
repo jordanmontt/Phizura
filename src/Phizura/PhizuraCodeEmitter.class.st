@@ -38,6 +38,19 @@ PhizuraCodeEmitter >> emitCode [
 	^ generatedCode contents
 ]
 
+{ #category : 'private' }
+PhizuraCodeEmitter >> escapeSingleQuotes: expression [
+
+	| stream |
+	stream := WriteStream on: String new.
+
+    expression do: [ :car |
+			car = $'
+				ifTrue: [ stream << car << car ]
+				ifFalse: [ stream << car ] ].
+	^ stream contents 
+]
+
 { #category : 'accessing' }
 PhizuraCodeEmitter >> records: anArray [
 
@@ -53,8 +66,12 @@ PhizuraCodeEmitter >> writeDelay: aDelay on: stream [
 { #category : 'private' }
 PhizuraCodeEmitter >> writeExpression: record on: stream [
 
-    stream << record expression.
-    record expression last = '.' ifTrue: [ stream << '.' ].
-    stream << String cr.
-    stream << '''' << record expression << ''' toLocal: ''evaluatedCommand''.' << String cr
+	| cleanedExpression |
+	cleanedExpression := record expression trimBoth.
+	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
+	
+	stream << cleanedExpression.
+	stream << String cr.
+	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
+	stream << String cr
 ]
