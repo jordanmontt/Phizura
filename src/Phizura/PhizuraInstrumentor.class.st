@@ -1,5 +1,5 @@
 Class {
-	#name : 'PhizuraEventRecorderInstrumentor',
+	#name : 'PhizuraInstrumentor',
 	#superclass : 'Object',
 	#instVars : [
 		'recorder',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-PhizuraEventRecorderInstrumentor class >> onRecorder: aRecorder [
+PhizuraInstrumentor class >> onRecorder: aRecorder [
 
 	^ self basicNew
 		  recorder: aRecorder;
@@ -19,50 +19,49 @@ PhizuraEventRecorderInstrumentor class >> onRecorder: aRecorder [
 		  yourself
 ]
 
-{ #category : 'instrumentation' }
-PhizuraEventRecorderInstrumentor >> basicArgHandler [
-
-	^ PhizuraEventHandler onRecorder: recorder
-]
-
 { #category : 'initialization' }
-PhizuraEventRecorderInstrumentor >> initialize [
+PhizuraInstrumentor >> initialize [
 
 	super initialize.
 	self initializeMethodProxies
 ]
 
 { #category : 'initialization' }
-PhizuraEventRecorderInstrumentor >> initializeMethodProxies [
+PhizuraInstrumentor >> initializeMethodProxies [
 
 	coypuEvaluate := MpMethodProxy
 		onMethod: SpCodeMooflodEvaluateCommand >> #executeCode:
-		handler: self basicArgHandler
+		handler: self phizuraHandler
 ]
 
 { #category : 'api' }
-PhizuraEventRecorderInstrumentor >> instrument [
+PhizuraInstrumentor >> instrument [
 
 	self proxyVariables do: #install.
 	MpMethodProxy enableInstrumentation
 ]
 
 { #category : 'instrumentation' }
-PhizuraEventRecorderInstrumentor >> proxyVariables [
+PhizuraInstrumentor >> phizuraHandler [
 
-	self flag:
-		'IMPORTANT: Here one needs to return all the instances variables that hold a proxy.'.
+	^ PhizuraHandler onRecorder: recorder
+]
+
+{ #category : 'instrumentation' }
+PhizuraInstrumentor >> proxyVariables [ self flag:
+
+	'IMPORTANT: Here one needs to return all the instances variables that hold a proxy.'.
 	^ { coypuEvaluate }
 ]
 
 { #category : 'accessing' }
-PhizuraEventRecorderInstrumentor >> recorder: aRecorder [
+PhizuraInstrumentor >> recorder: aRecorder [
 
 	recorder := aRecorder
 ]
 
 { #category : 'api' }
-PhizuraEventRecorderInstrumentor >> uninstrument [
+PhizuraInstrumentor >> uninstrument [
 
 	self proxyVariables do: #uninstall.
 	MpMethodProxy disableInstrumentation

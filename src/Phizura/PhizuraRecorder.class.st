@@ -30,6 +30,12 @@ PhizuraRecorder >> allRecords [
 	^ records
 ]
 
+{ #category : 'printing' }
+PhizuraRecorder >> emitCode [
+
+    ^ (PhizuraCodeEmitter onRecords: records) emitCode
+]
+
 { #category : 'api - exporting' }
 PhizuraRecorder >> exportAsJSON [
 
@@ -40,7 +46,7 @@ PhizuraRecorder >> exportAsJSON [
 PhizuraRecorder >> initialize [
 
 	super initialize.
-	instrumenter := PhizuraInstrumenter onRecorder: self.
+	instrumenter := PhizuraInstrumentor onRecorder: self.
 	records := OrderedCollection new
 ]
 
@@ -62,7 +68,7 @@ PhizuraRecorder >> record [
 ]
 
 { #category : 'api actions' }
-PhizuraRecorder >> unrecord [
+PhizuraRecorder >> stopRecording [
 
 	instrumenter uninstrument
 ]
