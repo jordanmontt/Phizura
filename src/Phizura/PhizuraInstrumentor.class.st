@@ -15,7 +15,7 @@ PhizuraInstrumentor >> initialize [
 
 	super initialize.
 	self initializeProxyVariables.
-"	self initializeMethodProxies"
+	self initializeMethodProxies
 ]
 
 { #category : 'initialization' }
@@ -40,7 +40,7 @@ PhizuraInstrumentor >> phizuraHandler [
 { #category : 'instrumentation' }
 PhizuraInstrumentor >> proxyVariables [
 
-	^ proxyVariables 
+	^ proxyVariables
 ]
 
 { #category : 'accessing' }
