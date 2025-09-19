@@ -10,7 +10,9 @@ Class {
 PhizuraPlaygroundPresenter >> initializeWindow: aWindowPresenter [
 
     super initializeWindow: aWindowPresenter.
-    aWindowPresenter whenClosedDo: [ PhiRecorderInstance stopRecording ]
+    aWindowPresenter
+        whenClosedDo: [ PhiRecorderInstance stopRecording ];
+        title: 'Phizura Playground '
 ]
 
 { #category : 'private - factory' }
