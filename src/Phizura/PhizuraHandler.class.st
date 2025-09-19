@@ -4,9 +4,9 @@ Class {
 	#instVars : [
 		'recorder'
 	],
-	#category : 'Phizura-Handlers',
+	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
-	#tag : 'Handlers'
+	#tag : 'Instrumentation'
 }
 
 { #category : 'instance creation' }
@@ -20,14 +20,14 @@ PhizuraHandler class >> onRecorder: aRecorder [
 { #category : 'evaluating' }
 PhizuraHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfArguments [
 
-	| argument |
-	"We instrument a method that we know that it has one argument."
-	argument := anArrayOfArguments first.
+    | argument |
+    "The first argument of the instrumeted method is the code (expression) that is being evaluated"
+    argument := anArrayOfArguments first.
 
-	recorder addRecord: (PhizuraEvaluationRecordEntry new
-			 time: DateAndTime now;
-			 expression: argument;
-			 yourself)
+    recorder addRecord: (PhizuraEvaluationRecordEntry new
+            time: DateAndTime now;
+            expression: argument;
+            yourself)
 ]
 
 { #category : 'accessing' }

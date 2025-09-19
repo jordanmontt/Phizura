@@ -37,12 +37,6 @@ PhizuraRecorder >> emitCode [
     ^ (PhizuraCodeEmitter onRecords: records) emitCode
 ]
 
-{ #category : 'api - exporting' }
-PhizuraRecorder >> exportAsJSON [
-
-	^ (PhizuraJSONExporter onRecorder: self) export
-]
-
 { #category : 'initialization' }
 PhizuraRecorder >> initialize [
 
@@ -55,7 +49,7 @@ PhizuraRecorder >> initialize [
 { #category : 'inspector' }
 PhizuraRecorder >> inspectRecords: aBuilder [
 
-	<inspectorPresentationOrder: 0 title: 'records'>
+	<inspectorPresentationOrder: 0 title: 'Records'>
 	| allRecords |
 	allRecords := self allRecords.
 	^ SpListPresenter new

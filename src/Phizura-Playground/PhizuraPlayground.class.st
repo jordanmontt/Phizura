@@ -4,9 +4,9 @@ Class {
 	#classInstVars : [
 		'playground'
 	],
-	#category : 'Phizura-Playground-Playground',
+	#category : 'Phizura-Playground-Model',
 	#package : 'Phizura-Playground',
-	#tag : 'Playground'
+	#tag : 'Model'
 }
 
 { #category : 'class initialization' }

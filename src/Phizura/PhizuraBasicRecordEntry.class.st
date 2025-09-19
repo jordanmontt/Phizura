@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'time'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Core',
+	#package : 'Phizura',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }

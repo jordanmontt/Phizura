@@ -9,12 +9,6 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'printing' }
-PhizuraEvaluationRecordEntry >> emitCode [
-
-    ^ expression
-]
-
 { #category : 'accessing' }
 PhizuraEvaluationRecordEntry >> emitOnEmitter: emitter onStream: aStream [
 
@@ -36,5 +30,5 @@ PhizuraEvaluationRecordEntry >> expression: aString [
 { #category : 'printing' }
 PhizuraEvaluationRecordEntry >> printOn: aStream [
 
-    aStream << self emitCode << ' - ' << time asString
+    aStream << 'EVALUATION - ' << self expression
 ]

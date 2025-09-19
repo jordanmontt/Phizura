@@ -10,6 +10,15 @@ Class {
 	#tag : 'Instrumentation'
 }
 
+{ #category : 'copying' }
+PhizuraInstrumentor >> , anotherInstrumentator [
+
+    anotherInstrumentator class = self class ifFalse: [ self error: 'Argument is not an instrumentator' ].
+    ^ self class new
+          proxyVariables: self proxyVariables , anotherInstrumentator proxyVariables;
+          yourself
+]
+
 { #category : 'initialization' }
 PhizuraInstrumentor >> initialize [
 
@@ -41,6 +50,12 @@ PhizuraInstrumentor >> phizuraHandler [
 PhizuraInstrumentor >> proxyVariables [
 
 	^ proxyVariables
+]
+
+{ #category : 'instrumentation' }
+PhizuraInstrumentor >> proxyVariables: aCollection [
+
+    proxyVariables := aCollection
 ]
 
 { #category : 'accessing' }

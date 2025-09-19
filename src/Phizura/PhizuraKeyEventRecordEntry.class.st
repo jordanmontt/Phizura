@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'key'
 	],
-	#category : 'Phizura',
-	#package : 'Phizura'
+	#category : 'Phizura-Core',
+	#package : 'Phizura',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }
@@ -29,4 +30,11 @@ PhizuraKeyEventRecordEntry >> key [
 PhizuraKeyEventRecordEntry >> key: aKey [
 
     key := aKey
+]
+
+{ #category : 'printing' }
+PhizuraKeyEventRecordEntry >> printOn: aStream [
+
+    aStream << 'KEY - '.
+    self key asString printOn: aStream
 ]

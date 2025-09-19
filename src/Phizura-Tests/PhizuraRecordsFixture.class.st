@@ -27,10 +27,10 @@ PhizuraRecordsFixture >> initialize [
 { #category : 'instance creation' }
 PhizuraRecordsFixture >> newRecord: codeAsString withTime: aTime [
 
-	records add: (PhizuraRecordEntry new
-		time: aTime;
-		expression: codeAsString ;
-		yourself)
+    records add: (PhizuraEvaluationRecordEntry new
+             time: aTime;
+             expression: codeAsString;
+             yourself)
 ]
 
 { #category : 'initialization' }

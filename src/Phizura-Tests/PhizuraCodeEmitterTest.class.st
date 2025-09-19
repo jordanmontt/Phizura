@@ -63,7 +63,7 @@ PhizuraCodeEmitterTest >> testEmitCodeOneRecord [
 PhizuraCodeEmitterTest >> testEmitCodeSingleQuotesExample [
 
     | expected |
-    codeEmitter records: { (PhizuraRecordEntry new
+    codeEmitter records: { (PhizuraEvaluationRecordEntry new
              expression: '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio';
              time: DateAndTime now) }.
 

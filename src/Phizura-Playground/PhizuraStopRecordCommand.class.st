@@ -5,9 +5,9 @@ I will select all contents of a playground and I will execute it, inspecting the
 Class {
 	#name : 'PhizuraStopRecordCommand',
 	#superclass : 'StPlaygroundCommand',
-	#category : 'Phizura-Playground-Playground',
+	#category : 'Phizura-Playground-Commands',
 	#package : 'Phizura-Playground',
-	#tag : 'Playground'
+	#tag : 'Commands'
 }
 
 { #category : 'default' }

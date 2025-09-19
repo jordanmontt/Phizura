@@ -28,11 +28,9 @@ PhizuraCodeEmitter >> emitCode [
 	
 	records allButFirst doWithIndex: [ :record :index |
 		delay := record time - previousTime.
-		
 		self writeDelay: delay on: generatedCode.
 		generatedCode << String cr.
 		record emitOnEmitter: self onStream: generatedCode.
-	
 		previousTime := record time ].
 	
 	^ generatedCode contents
