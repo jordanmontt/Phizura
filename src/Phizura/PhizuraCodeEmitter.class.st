@@ -45,7 +45,7 @@ PhizuraCodeEmitter >> emitExpression: record on: stream [
 	
 	stream << cleanedExpression.
 	stream << String cr.
-	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
+	stream << "(self escapeSingleQuotes: cleanedExpression)" cleanedExpression surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
 	stream << String cr
 ]
 
