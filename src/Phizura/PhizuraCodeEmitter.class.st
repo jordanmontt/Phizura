@@ -52,7 +52,7 @@ PhizuraCodeEmitter >> emitExpression: record on: stream [
 { #category : 'private' }
 PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
 
-    record key value printOn: stream.
+    record key name asString printOn: stream.
     stream << ' toLocal: ''keyPressed''.'.
     stream << String cr
 ]
