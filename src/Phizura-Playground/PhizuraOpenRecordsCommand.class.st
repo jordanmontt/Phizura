@@ -30,5 +30,6 @@ PhizuraOpenRecordsCommand class >> defaultName [
 { #category : 'executing' }
 PhizuraOpenRecordsCommand >> execute [
 
-( StPlaygroundPresenter new contents:  PhiRecorderInstance emitCode) open
+	(PhizuraPlaygroundPresenter new contents:
+		 PhiRecorderInstance emitCode) open
 ]

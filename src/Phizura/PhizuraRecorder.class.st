@@ -37,12 +37,6 @@ PhizuraRecorder >> emitCode [
     ^ (PhizuraCodeEmitter onRecords: records) emitCode
 ]
 
-{ #category : 'helper' }
-PhizuraRecorder >> emitCodeOnNewPlayground [
-
-(StPlaygroundPresenter new contents: self emitCode ) open.
-]
-
 { #category : 'initialization' }
 PhizuraRecorder >> initialize [
 
