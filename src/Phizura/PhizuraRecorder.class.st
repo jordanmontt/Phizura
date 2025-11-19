@@ -32,6 +32,12 @@ PhizuraRecorder >> allRecords [
 ]
 
 { #category : 'printing' }
+PhizuraRecorder >> emitCleanCode [
+
+	^ (PhizuraCodeEmitter onRecords: records) emitCleanCode
+]
+
+{ #category : 'printing' }
 PhizuraRecorder >> emitCode [
 
     ^ (PhizuraCodeEmitter onRecords: records) emitCode

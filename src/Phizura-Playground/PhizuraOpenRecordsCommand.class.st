@@ -12,13 +12,13 @@ Class {
 { #category : 'default' }
 PhizuraOpenRecordsCommand class >> defaultDescription [
 
-	^ 'Open the records in a new Playground'
+	^ 'Open the executable recording in a new Playground'
 ]
 
 { #category : 'accessing' }
 PhizuraOpenRecordsCommand class >> defaultIconName [
 
-	^ #rightSide
+	^ #smallExport
 ]
 
 { #category : 'default' }
@@ -30,6 +30,10 @@ PhizuraOpenRecordsCommand class >> defaultName [
 { #category : 'executing' }
 PhizuraOpenRecordsCommand >> execute [
 
+
+| generatedCode |
+generatedCode := WriteStream on: String new.
+generatedCode << $[ << String cr << PhiRecorderInstance emitCleanCode << String cr << $].
 	(PhizuraPlaygroundPresenter new contents:
-		 PhiRecorderInstance emitCode) open
+		 generatedCode ) open
 ]

@@ -10,6 +10,12 @@ Class {
 }
 
 { #category : 'accessing' }
+PhizuraKeyEventRecordEntry >> emitCleanOnEmitter: emitter onStream: aStream [
+
+	"do nothing"
+]
+
+{ #category : 'accessing' }
 PhizuraKeyEventRecordEntry >> emitOnEmitter: emitter onStream: aStream [
 
     emitter emitKeyStroke: self on: aStream

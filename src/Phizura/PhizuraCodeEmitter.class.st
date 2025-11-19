@@ -20,16 +20,18 @@ PhizuraCodeEmitter class >> onRecords: anArray [
 { #category : 'as yet unclassified' }
 PhizuraCodeEmitter >> emitCleanCode [
 
-	| previousTime generatedCode delay |
+	| previousTime generatedCode delay cleanRecords |
 	records ifEmpty: [ ^ '' ].
 
+	cleanRecords := records select: [ :i |
+		                i class = PhizuraEvaluationRecordEntry ].
 
-	previousTime := records first time.
+	previousTime := cleanRecords first time.
 	generatedCode := WriteStream on: String new.
 
-	records first emitCleanOnEmitter: self onStream: generatedCode.
+	cleanRecords first emitCleanOnEmitter: self onStream: generatedCode.
 
-	records allButFirst doWithIndex: [ :record :index |
+	cleanRecords allButFirst doWithIndex: [ :record :index |
 			delay := record time - previousTime.
 			self writeDelay: delay on: generatedCode.
 			generatedCode << String cr.
@@ -55,21 +57,21 @@ PhizuraCodeEmitter >> emitCleanExpression: record on: stream [
 { #category : 'api' }
 PhizuraCodeEmitter >> emitCode [
 
-	| previousTime generatedCode delay |
+	| previousTime generatedCode delay  |
 	records ifEmpty: [ ^ '' ].
-	
+
 	previousTime := records first time.
 	generatedCode := WriteStream on: String new.
 
 	records first emitOnEmitter: self onStream: generatedCode.
-	
+
 	records allButFirst doWithIndex: [ :record :index |
-		delay := record time - previousTime.
-		self writeDelay: delay on: generatedCode.
-		generatedCode << String cr.
-		record emitOnEmitter: self onStream: generatedCode.
-		previousTime := record time ].
-	
+			delay := record time - previousTime.
+			self writeDelay: delay on: generatedCode.
+			generatedCode << String cr.
+			record emitOnEmitter: self onStream: generatedCode.
+			previousTime := record time ].
+
 	^ generatedCode contents
 ]
 
