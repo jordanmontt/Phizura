@@ -10,6 +10,12 @@ Class {
 }
 
 { #category : 'accessing' }
+PhizuraEvaluationRecordEntry >> emitCleanOnEmitter: emitter onStream: aStream [
+
+	emitter emitCleanExpression: self on: aStream
+]
+
+{ #category : 'accessing' }
 PhizuraEvaluationRecordEntry >> emitOnEmitter: emitter onStream: aStream [
 
     emitter emitExpression: self on: aStream

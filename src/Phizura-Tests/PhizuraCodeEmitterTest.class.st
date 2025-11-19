@@ -22,6 +22,28 @@ PhizuraCodeEmitterTest >> setUp [
 ]
 
 { #category : 'tests' }
+PhizuraCodeEmitterTest >> testEmitCleanCode [
+
+	| expected |
+	codeEmitter records: fixture records.
+	expected := 'ep := EcoPhausto new.
+1.0 seconds wait.
+
+ep playFor: 512 bars.
+1.5 seconds wait.
+
+#(1 0 0 1 0 0 0 0) asSeq to: #kick.
+1.8 seconds wait.
+
+#rumba asRhythm to: #conga.
+2.0 seconds wait.
+
+''0202'' hexBeat to: #snare.
+'.
+	self assert: codeEmitter emitCleanCode equals: expected
+]
+
+{ #category : 'tests' }
 PhizuraCodeEmitterTest >> testEmitCode [
 
     | expected |

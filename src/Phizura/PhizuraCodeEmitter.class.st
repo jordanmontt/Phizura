@@ -17,6 +17,41 @@ PhizuraCodeEmitter class >> onRecords: anArray [
           yourself
 ]
 
+{ #category : 'as yet unclassified' }
+PhizuraCodeEmitter >> emitCleanCode [
+
+	| previousTime generatedCode delay |
+	records ifEmpty: [ ^ '' ].
+
+
+	previousTime := records first time.
+	generatedCode := WriteStream on: String new.
+
+	records first emitCleanOnEmitter: self onStream: generatedCode.
+
+	records allButFirst doWithIndex: [ :record :index |
+			delay := record time - previousTime.
+			self writeDelay: delay on: generatedCode.
+			generatedCode << String cr.
+			record emitCleanOnEmitter: self onStream: generatedCode.
+			previousTime := record time ].
+
+	^ generatedCode contents
+]
+
+{ #category : 'private' }
+PhizuraCodeEmitter >> emitCleanExpression: record on: stream [
+
+	| cleanedExpression |
+	cleanedExpression := record expression trimBoth.
+	cleanedExpression last = $. ifFalse: [
+		cleanedExpression := cleanedExpression , '.' ].
+
+	stream << cleanedExpression.
+	stream << String cr.
+	
+]
+
 { #category : 'api' }
 PhizuraCodeEmitter >> emitCode [
 
@@ -54,7 +89,7 @@ PhizuraCodeEmitter >> emitExpression: record on: stream [
 { #category : 'private' }
 PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
 
-    record key name asString printOn: stream.
+    record key value  printOn: stream.
     stream << ' toLocal: ''keyPressed''.'.
     stream << String cr
 ]
