@@ -30,10 +30,10 @@ PhizuraOpenRecordsCommand class >> defaultName [
 { #category : 'executing' }
 PhizuraOpenRecordsCommand >> execute [
 
-
-| generatedCode |
-generatedCode := WriteStream on: String new.
-generatedCode << $[ << String cr << PhiRecorderInstance emitCleanCode << String cr << $].
-	(PhizuraPlaygroundPresenter new contents:
-		 generatedCode ) open
+	| generatedCode |
+	generatedCode := WriteStream on: String new.
+	generatedCode << $[ << String cr << PhiRecorderInstance emitCleanCode
+	<< String cr << $] << ' fork '.
+	(PhizuraPlaygroundPresenter new contents: generatedCode contents)
+		open
 ]
