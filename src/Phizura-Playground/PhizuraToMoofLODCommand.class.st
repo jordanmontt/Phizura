@@ -29,7 +29,10 @@ PhizuraToMoofLODCommand class >> defaultName [
 
 { #category : 'executing' }
 PhizuraToMoofLODCommand >> execute [
-
-	(PhizuraPlaygroundPresenter new contents:
-		 PhiRecorderInstance emitCode) open
+| generatedCode |
+	generatedCode := WriteStream on: String new.
+	generatedCode << $[ << String cr << PhiRecorderInstance emitCode
+	<< String cr << $] << ' fork '.
+	(PhizuraPlaygroundPresenter new contents: generatedCode contents)
+		open
 ]
