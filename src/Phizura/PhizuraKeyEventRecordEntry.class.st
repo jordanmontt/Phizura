@@ -27,6 +27,12 @@ PhizuraKeyEventRecordEntry >> isKeyEntryRecord [
     ^ true
 ]
 
+{ #category : 'testing' }
+PhizuraKeyEventRecordEntry >> isKeyEvent [
+
+	^ true
+]
+
 { #category : 'accessing' }
 PhizuraKeyEventRecordEntry >> key [
 	^ key

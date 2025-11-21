@@ -17,31 +17,15 @@ PhizuraCodeEmitter class >> onRecords: anArray [
           yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 PhizuraCodeEmitter >> emitCleanCode [
 
-	| previousTime generatedCode delay cleanRecords |
-	records ifEmpty: [ ^ '' ].
-
-	cleanRecords := records select: [ :i |
-		                i class = PhizuraEvaluationRecordEntry ].
-
-	previousTime := cleanRecords first time.
-	generatedCode := WriteStream on: String new.
-
-	cleanRecords first emitCleanOnEmitter: self onStream: generatedCode.
-
-	cleanRecords allButFirst doWithIndex: [ :record :index |
-			delay := record time - previousTime.
-			self writeDelay: delay on: generatedCode.
-			generatedCode << String cr.
-			record emitCleanOnEmitter: self onStream: generatedCode.
-			previousTime := record time ].
-
-	^ generatedCode contents
+	^ self
+		emitCodeOnRecords: (records reject: #isKeyEvent)
+		using: [ :record :stream | record emitCleanOnEmitter: self onStream: stream ]
 ]
 
-{ #category : 'private' }
+{ #category : 'double dispatch API' }
 PhizuraCodeEmitter >> emitCleanExpression: record on: stream [
 
 	| cleanedExpression |
@@ -57,25 +41,33 @@ PhizuraCodeEmitter >> emitCleanExpression: record on: stream [
 { #category : 'api' }
 PhizuraCodeEmitter >> emitCode [
 
-	| previousTime generatedCode delay  |
-	records ifEmpty: [ ^ '' ].
+	^ self
+		emitCodeOnRecords: records
+		using: [ :record :stream | record emitOnEmitter: self onStream: stream ]
+]
 
-	previousTime := records first time.
+{ #category : 'private' }
+PhizuraCodeEmitter >> emitCodeOnRecords: aCollection using: aBlock [
+
+	| previousTime generatedCode delay  |
+	aCollection ifEmpty: [ ^ '' ].
+
+	previousTime := aCollection first time.
 	generatedCode := WriteStream on: String new.
 
-	records first emitOnEmitter: self onStream: generatedCode.
+	aBlock value: aCollection first value: generatedCode.
 
-	records allButFirst doWithIndex: [ :record :index |
+	aCollection allButFirst doWithIndex: [ :record :index |
 			delay := record time - previousTime.
 			self writeDelay: delay on: generatedCode.
 			generatedCode << String cr.
-			record emitOnEmitter: self onStream: generatedCode.
+			aBlock value: record value: generatedCode.
 			previousTime := record time ].
 
 	^ generatedCode contents
 ]
 
-{ #category : 'private' }
+{ #category : 'double dispatch API' }
 PhizuraCodeEmitter >> emitExpression: record on: stream [
 
 	| cleanedExpression |
@@ -88,7 +80,7 @@ PhizuraCodeEmitter >> emitExpression: record on: stream [
 	stream << String cr
 ]
 
-{ #category : 'private' }
+{ #category : 'double dispatch API' }
 PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
 
     record key value  printOn: stream.

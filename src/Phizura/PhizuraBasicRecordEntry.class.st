@@ -21,6 +21,12 @@ PhizuraBasicRecordEntry >> isKeyEntryRecord [
     ^ false
 ]
 
+{ #category : 'testing' }
+PhizuraBasicRecordEntry >> isKeyEvent [
+
+	^ false
+]
+
 { #category : 'accessing' }
 PhizuraBasicRecordEntry >> time [
 
