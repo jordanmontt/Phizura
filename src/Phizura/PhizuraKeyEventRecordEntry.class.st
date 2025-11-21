@@ -18,7 +18,7 @@ PhizuraKeyEventRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStrea
 { #category : 'accessing' }
 PhizuraKeyEventRecordEntry >> emitPerformanceCodeOnEmitter: emitter onStream: aStream [
 
-	 emitter emitKeyStroke: self on: aStream
+	 emitter emitPerformanceKeyStroke: self on: aStream
 ]
 
 { #category : 'testing' }

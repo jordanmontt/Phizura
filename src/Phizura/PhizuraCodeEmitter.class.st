@@ -38,25 +38,6 @@ PhizuraCodeEmitter >> emitCodeOnRecords: aCollection using: aBlock [
 	^ generatedCode contents
 ]
 
-{ #category : 'double dispatch API' }
-PhizuraCodeEmitter >> emitExpression: record on: stream [
-
-	| cleanedExpression |
-	cleanedExpression := record expression trimBoth.
-	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
-
-	stream << cleanedExpression.
-	stream << String cr.
-	^ cleanedExpression
-]
-
-{ #category : 'double dispatch API' }
-PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
-	"Do nothing"
-
-	
-]
-
 { #category : 'api' }
 PhizuraCodeEmitter >> emitMoofLODCode [
 
@@ -69,7 +50,7 @@ PhizuraCodeEmitter >> emitMoofLODCode [
 PhizuraCodeEmitter >> emitMoofLODExpression: record on: stream [
 
 	|cleanedExpression|
-	cleanedExpression := self emitExpression: record on: stream.
+	cleanedExpression := self emitPerformanceExpression: record on: stream.
 
 	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
 	stream << String cr
@@ -89,6 +70,25 @@ PhizuraCodeEmitter >> emitPerformanceCode [
 	^ self
 		emitCodeOnRecords: (records reject: #isKeyEvent)
 		using: [ :record :stream | record emitPerformanceCodeOnEmitter: self onStream: stream ]
+]
+
+{ #category : 'double dispatch API' }
+PhizuraCodeEmitter >> emitPerformanceExpression: record on: stream [
+
+	| cleanedExpression |
+	cleanedExpression := record expression trimBoth.
+	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
+
+	stream << cleanedExpression.
+	stream << String cr.
+	^ cleanedExpression
+]
+
+{ #category : 'double dispatch API' }
+PhizuraCodeEmitter >> emitPerformanceKeyStroke: record on: stream [
+	"Do nothing"
+
+	
 ]
 
 { #category : 'private' }

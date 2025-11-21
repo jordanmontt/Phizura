@@ -18,7 +18,7 @@ PhizuraEvaluationRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStr
 { #category : 'accessing' }
 PhizuraEvaluationRecordEntry >> emitPerformanceCodeOnEmitter: emitter onStream: aStream [
 
-	emitter emitExpression: self on: aStream
+	emitter emitPerformanceExpression: self on: aStream
 ]
 
 { #category : 'accessing' }
