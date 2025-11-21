@@ -3,7 +3,7 @@ I will open the records in a new Playground, rady to be executed
 "
 Class {
 	#name : 'PhizuraOpenRecordsCommand',
-	#superclass : 'StPlaygroundCommand',
+	#superclass : 'PhizuraOpenPlaygroundAbstractCommand',
 	#category : 'Phizura-Playground-Commands',
 	#package : 'Phizura-Playground',
 	#tag : 'Commands'
@@ -27,13 +27,15 @@ PhizuraOpenRecordsCommand class >> defaultName [
 	^ 'Open Records'
 ]
 
+{ #category : 'accessing' }
+PhizuraOpenRecordsCommand class >> order [
+
+    ^ 105
+]
+
 { #category : 'executing' }
 PhizuraOpenRecordsCommand >> execute [
 
-	| generatedCode |
-	generatedCode := WriteStream on: String new.
-	generatedCode << $[ << String cr << PhiRecorderInstance emitCleanCode
-	<< String cr << $] << ' fork '.
-	(PhizuraPlaygroundPresenter new contents: generatedCode contents)
-		open
+	self openPhizuraPlaygroundOn:
+		(self surroundCodeWithForkBlock: PhiRecorderInstance emitCleanCode)
 ]

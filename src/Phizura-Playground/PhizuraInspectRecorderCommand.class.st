@@ -31,7 +31,7 @@ PhizuraInspectRecorderCommand class >> defaultName [
 { #category : 'accessing' }
 PhizuraInspectRecorderCommand class >> order [
 
-    ^ 104
+    ^ 103
 ]
 
 { #category : 'executing' }

@@ -9,12 +9,17 @@ Class {
 { #category : 'private commands' }
 PhizuraPlaygroundPagePresenter class >> baseToolbarCommands [
 
-	^ super baseToolbarCommands , {
+	^ {
+		  StPlaygroundDoItCommand.
+		  StPlaygroundPublishCommand.
+		  StPlaygroundBindingsCommand.
+		  StPlaygroundPagesCommand.
+
 		  PhizuraRecordCommand.
 		  PhizuraStopRecordCommand.
 		  PhizuraCleanRecorderCommand.
 		  PhizuraInspectRecorderCommand.
-		  PhizuraToMoofLODCommand.
+		  PhizuraOpenMoofLODCommand.
 		  PhizuraOpenRecordsCommand }
 ]
 
