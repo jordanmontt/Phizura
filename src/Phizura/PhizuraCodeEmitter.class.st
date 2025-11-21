@@ -17,35 +17,6 @@ PhizuraCodeEmitter class >> onRecords: anArray [
           yourself
 ]
 
-{ #category : 'api' }
-PhizuraCodeEmitter >> emitCleanCode [
-
-	^ self
-		emitCodeOnRecords: (records reject: #isKeyEvent)
-		using: [ :record :stream | record emitCleanOnEmitter: self onStream: stream ]
-]
-
-{ #category : 'double dispatch API' }
-PhizuraCodeEmitter >> emitCleanExpression: record on: stream [
-
-	| cleanedExpression |
-	cleanedExpression := record expression trimBoth.
-	cleanedExpression last = $. ifFalse: [
-		cleanedExpression := cleanedExpression , '.' ].
-
-	stream << cleanedExpression.
-	stream << String cr.
-	
-]
-
-{ #category : 'api' }
-PhizuraCodeEmitter >> emitCode [
-
-	^ self
-		emitCodeOnRecords: records
-		using: [ :record :stream | record emitOnEmitter: self onStream: stream ]
-]
-
 { #category : 'private' }
 PhizuraCodeEmitter >> emitCodeOnRecords: aCollection using: aBlock [
 
@@ -73,19 +44,51 @@ PhizuraCodeEmitter >> emitExpression: record on: stream [
 	| cleanedExpression |
 	cleanedExpression := record expression trimBoth.
 	cleanedExpression last = $. ifFalse: [ cleanedExpression := cleanedExpression , '.' ].
-	
+
 	stream << cleanedExpression.
 	stream << String cr.
+	^ cleanedExpression
+]
+
+{ #category : 'double dispatch API' }
+PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
+	"Do nothing"
+
+	
+]
+
+{ #category : 'api' }
+PhizuraCodeEmitter >> emitMoofLODCode [
+
+	^ self
+		emitCodeOnRecords: records
+		using: [ :record :stream | record emitMoofLODCodeOnEmitter: self onStream: stream ]
+]
+
+{ #category : 'double dispatch API' }
+PhizuraCodeEmitter >> emitMoofLODExpression: record on: stream [
+
+	|cleanedExpression|
+	cleanedExpression := self emitExpression: record on: stream.
+
 	stream << (self escapeSingleQuotes: cleanedExpression) surroundedBySingleQuotes << ' toLocal: ''evaluatedCommand''.'.
 	stream << String cr
 ]
 
 { #category : 'double dispatch API' }
-PhizuraCodeEmitter >> emitKeyStroke: record on: stream [
+PhizuraCodeEmitter >> emitMoofLODKeyStroke: record on: stream [
 
     record key value  printOn: stream.
     stream << ' toLocal: ''keyPressed''.'.
     stream << String cr
+]
+
+{ #category : 'api' }
+PhizuraCodeEmitter >> emitPerformanceCode [
+
+	^ self
+		emitCodeOnRecords: (records reject: #isKeyEvent)
+		using: [ :record :stream | record emitPerformanceCodeOnEmitter: self onStream: stream ]
 ]
 
 { #category : 'private' }

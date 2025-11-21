@@ -37,5 +37,5 @@ PhizuraOpenRecordsCommand class >> order [
 PhizuraOpenRecordsCommand >> execute [
 
 	self openPhizuraPlaygroundOn:
-		(self surroundCodeWithForkBlock: PhiRecorderInstance emitCleanCode)
+		(self surroundCodeWithForkBlock: PhiRecorderInstance emitPerformanceCode)
 ]

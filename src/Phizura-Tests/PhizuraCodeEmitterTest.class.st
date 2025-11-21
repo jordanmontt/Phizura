@@ -40,7 +40,7 @@ ep playFor: 512 bars.
 
 ''0202'' hexBeat to: #snare.
 '.
-	self assert: codeEmitter emitCleanCode equals: expected
+	self assert: codeEmitter emitPerformanceCode equals: expected
 ]
 
 { #category : 'tests' }
@@ -67,7 +67,7 @@ ep playFor: 512 bars.
 ''0202'' hexBeat to: #snare.
 ''''''0202'''' hexBeat to: #snare.'' toLocal: ''evaluatedCommand''.
 '.
-    self assert: codeEmitter emitCode equals: expected
+    self assert: codeEmitter emitMoofLODCode equals: expected
 ]
 
 { #category : 'tests' }
@@ -78,7 +78,7 @@ PhizuraCodeEmitterTest >> testEmitCodeOneRecord [
     expected := 'ep := EcoPhausto new.
 ''ep := EcoPhausto new.'' toLocal: ''evaluatedCommand''.
 '.
-    self assert: codeEmitter emitCode equals: expected
+    self assert: codeEmitter emitMoofLODCode equals: expected
 ]
 
 { #category : 'tests' }
@@ -92,7 +92,7 @@ PhizuraCodeEmitterTest >> testEmitCodeSingleQuotesExample [
     expected := '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio.
 ''''''1 , 2 , 3 , ~ '''' asDirtNotes to: #casio.'' toLocal: ''evaluatedCommand''.
 '.
-    self assert: codeEmitter emitCode equals: expected
+    self assert: codeEmitter emitMoofLODCode equals: expected
 ]
 
 { #category : 'tests' }
@@ -111,7 +111,7 @@ ep playFor: 512 bars.
 #(1 0 0 1 0 0 0 0) asSeq to: #kick.
 ''#(1 0 0 1 0 0 0 0) asSeq to: #kick.'' toLocal: ''evaluatedCommand''.
 '.
-    self assert: codeEmitter emitCode equals: expected
+    self assert: codeEmitter emitMoofLODCode equals: expected
 ]
 
 { #category : 'tests' }
@@ -126,5 +126,5 @@ PhizuraCodeEmitterTest >> testEmitCodeTwoRecords [
 ep playFor: 512 bars.
 ''ep playFor: 512 bars.'' toLocal: ''evaluatedCommand''.
 '.
-    self assert: codeEmitter emitCode equals: expected
+    self assert: codeEmitter emitMoofLODCode equals: expected
 ]

@@ -32,15 +32,15 @@ PhizuraRecorder >> allRecords [
 ]
 
 { #category : 'printing' }
-PhizuraRecorder >> emitCleanCode [
+PhizuraRecorder >> emitMoofLODCode [
 
-	^ (PhizuraCodeEmitter onRecords: records) emitCleanCode
+    ^ (PhizuraCodeEmitter onRecords: records) emitMoofLODCode
 ]
 
 { #category : 'printing' }
-PhizuraRecorder >> emitCode [
+PhizuraRecorder >> emitPerformanceCode [
 
-    ^ (PhizuraCodeEmitter onRecords: records) emitCode
+	^ (PhizuraCodeEmitter onRecords: records) emitPerformanceCode
 ]
 
 { #category : 'initialization' }

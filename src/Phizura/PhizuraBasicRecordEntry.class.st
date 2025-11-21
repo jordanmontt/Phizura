@@ -10,9 +10,15 @@ Class {
 }
 
 { #category : 'accessing' }
-PhizuraBasicRecordEntry >> emitOnEmitter: emitter onStream: aStream [
+PhizuraBasicRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [
 
-    
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+PhizuraBasicRecordEntry >> emitPerformanceCodeOnEmitter: emitter onStream: aStream [
+
+	self subclassResponsibility
 ]
 
 { #category : 'testing' }

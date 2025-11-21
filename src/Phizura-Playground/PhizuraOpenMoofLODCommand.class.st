@@ -37,5 +37,5 @@ PhizuraOpenMoofLODCommand class >> order [
 PhizuraOpenMoofLODCommand >> execute [
 
 	self openPhizuraPlaygroundOn:
-		(self surroundCodeWithForkBlock: PhiRecorderInstance emitCode)
+		(self surroundCodeWithForkBlock: PhiRecorderInstance emitMoofLODCode)
 ]

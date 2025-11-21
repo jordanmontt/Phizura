@@ -10,15 +10,15 @@ Class {
 }
 
 { #category : 'accessing' }
-PhizuraKeyEventRecordEntry >> emitCleanOnEmitter: emitter onStream: aStream [
+PhizuraKeyEventRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [
 
-	"do nothing"
+    emitter emitMoofLODKeyStroke: self on: aStream
 ]
 
 { #category : 'accessing' }
-PhizuraKeyEventRecordEntry >> emitOnEmitter: emitter onStream: aStream [
+PhizuraKeyEventRecordEntry >> emitPerformanceCodeOnEmitter: emitter onStream: aStream [
 
-    emitter emitKeyStroke: self on: aStream
+	 emitter emitKeyStroke: self on: aStream
 ]
 
 { #category : 'testing' }
