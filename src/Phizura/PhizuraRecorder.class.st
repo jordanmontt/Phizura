@@ -70,6 +70,11 @@ PhizuraRecorder >> record [
     isActivated := true
 ]
 
+{ #category : 'accessing' }
+PhizuraRecorder >> records [
+	^ records
+]
+
 { #category : 'api actions' }
 PhizuraRecorder >> stopRecording [
 

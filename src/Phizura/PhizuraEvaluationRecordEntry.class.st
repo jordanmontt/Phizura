@@ -9,6 +9,15 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'as yet unclassified' }
+PhizuraEvaluationRecordEntry class >> expression: aString time: aTime [
+
+	^ self new
+		  expression: aString;
+		  time: aTime;
+		  yourself
+]
+
 { #category : 'accessing' }
 PhizuraEvaluationRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [
 

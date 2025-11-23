@@ -2,7 +2,7 @@
 A PhizuraCodeEmitterTest is a test class for testing the behavior of PhizuraCodeEmitter
 "
 Class {
-	#name : 'PhizuraCodeEmitterTest',
+	#name : 'PhizuraMoofLODCodeEmitterTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'codeEmitter',
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : 'running' }
-PhizuraCodeEmitterTest >> setUp [
+PhizuraMoofLODCodeEmitterTest >> setUp [
 
     super setUp.
     codeEmitter := PhizuraCodeEmitter new.
@@ -22,29 +22,7 @@ PhizuraCodeEmitterTest >> setUp [
 ]
 
 { #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCleanCode [
-
-	| expected |
-	codeEmitter records: fixture records.
-	expected := 'ep := EcoPhausto new.
-1.0 seconds wait.
-
-ep playFor: 512 bars.
-1.5 seconds wait.
-
-#(1 0 0 1 0 0 0 0) asSeq to: #kick.
-1.8 seconds wait.
-
-#rumba asRhythm to: #conga.
-2.0 seconds wait.
-
-''0202'' hexBeat to: #snare.
-'.
-	self assert: codeEmitter emitPerformanceCode equals: expected
-]
-
-{ #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCode [
+PhizuraMoofLODCodeEmitterTest >> testEmitCode [
 
     | expected |
     codeEmitter records: fixture records.
@@ -71,7 +49,7 @@ ep playFor: 512 bars.
 ]
 
 { #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCodeOneRecord [
+PhizuraMoofLODCodeEmitterTest >> testEmitCodeOneRecord [
 
     | expected |
     codeEmitter records: (fixture recordsUpTo: 1).
@@ -82,11 +60,11 @@ PhizuraCodeEmitterTest >> testEmitCodeOneRecord [
 ]
 
 { #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCodeSingleQuotesExample [
+PhizuraMoofLODCodeEmitterTest >> testEmitCodeSingleQuotesExample [
 
     | expected |
-    codeEmitter records: { (PhizuraEvaluationRecordEntry new
-             expression: '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio';
+    codeEmitter records: { (PhizuraEvaluationRecordEntry
+             expression: '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio'
              time: DateAndTime now) }.
 
     expected := '''1 , 2 , 3 , ~ '' asDirtNotes to: #casio.
@@ -96,7 +74,7 @@ PhizuraCodeEmitterTest >> testEmitCodeSingleQuotesExample [
 ]
 
 { #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCodeThreeRecords [
+PhizuraMoofLODCodeEmitterTest >> testEmitCodeThreeRecords [
 
     | expected |
     codeEmitter records: (fixture recordsUpTo: 3).
@@ -115,7 +93,7 @@ ep playFor: 512 bars.
 ]
 
 { #category : 'tests' }
-PhizuraCodeEmitterTest >> testEmitCodeTwoRecords [
+PhizuraMoofLODCodeEmitterTest >> testEmitCodeTwoRecords [
 
     | expected |
     codeEmitter records: (fixture recordsUpTo: 2).
@@ -125,6 +103,45 @@ PhizuraCodeEmitterTest >> testEmitCodeTwoRecords [
 
 ep playFor: 512 bars.
 ''ep playFor: 512 bars.'' toLocal: ''evaluatedCommand''.
+'.
+    self assert: codeEmitter emitMoofLODCode equals: expected
+]
+
+{ #category : 'tests' }
+PhizuraMoofLODCodeEmitterTest >> testEmitCodeWithKeyStrokes [
+
+    | expected |
+    codeEmitter records: fixture recordsWithKeyStrokes.
+    expected := 'ep := EcoPhausto new.
+''ep := EcoPhausto new.'' toLocal: ''evaluatedCommand''.
+0.1 seconds wait.
+
+69 toLocal: ''keyPressed''.
+0.1 seconds wait.
+
+80 toLocal: ''keyPressed''.
+0.1 seconds wait.
+
+32 toLocal: ''keyPressed''.
+0.2 seconds wait.
+
+69 toLocal: ''keyPressed''.
+0.5 seconds wait.
+
+ep playFor: 512 bars.
+''ep playFor: 512 bars.'' toLocal: ''evaluatedCommand''.
+1.5 seconds wait.
+
+#(1 0 0 1 0 0 0 0) asSeq to: #kick.
+''#(1 0 0 1 0 0 0 0) asSeq to: #kick.'' toLocal: ''evaluatedCommand''.
+1.8 seconds wait.
+
+#rumba asRhythm to: #conga.
+''#rumba asRhythm to: #conga.'' toLocal: ''evaluatedCommand''.
+2.0 seconds wait.
+
+''0202'' hexBeat to: #snare.
+''''''0202'''' hexBeat to: #snare.'' toLocal: ''evaluatedCommand''.
 '.
     self assert: codeEmitter emitMoofLODCode equals: expected
 ]

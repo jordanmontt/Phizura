@@ -9,6 +9,15 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'as yet unclassified' }
+PhizuraKeyEventRecordEntry class >> time: aTime key: aKeystroke [
+
+	^ self new
+		time: aTime;
+		key: aKeystroke;
+		yourself
+]
+
 { #category : 'accessing' }
 PhizuraKeyEventRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [
 
