@@ -3,12 +3,22 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'recorder',
-		'proxyVariables'
+		'proxyVariables',
+		'instrumentationHandler'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
 	#tag : 'Instrumentation'
 }
+
+{ #category : 'instance creation' }
+PhizuraInstrumentor class >> onRecorder: aRecorder [
+
+	^ self basicNew
+		  recorder: aRecorder;
+		  initialize;
+		  yourself
+]
 
 { #category : 'copying' }
 PhizuraInstrumentor >> , anotherInstrumentator [
@@ -23,8 +33,16 @@ PhizuraInstrumentor >> , anotherInstrumentator [
 PhizuraInstrumentor >> initialize [
 
 	super initialize.
+	instrumentationHandler := PhizuraHandler onRecorder: recorder.
+
 	self initializeProxyVariables.
 	self initializeMethodProxies
+]
+
+{ #category : 'initialization' }
+PhizuraInstrumentor >> initializeMethodProxies [
+
+	self subclassResponsibility
 ]
 
 { #category : 'initialization' }
@@ -38,12 +56,6 @@ PhizuraInstrumentor >> instrument [
 
 	self proxyVariables do: #install.
 	MpMethodProxy enableInstrumentation
-]
-
-{ #category : 'instrumentation' }
-PhizuraInstrumentor >> phizuraHandler [
-
-	^ PhizuraHandler onRecorder: recorder
 ]
 
 { #category : 'instrumentation' }

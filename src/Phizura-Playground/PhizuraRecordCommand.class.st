@@ -37,5 +37,31 @@ PhizuraRecordCommand class >> order [
 { #category : 'executing' }
 PhizuraRecordCommand >> execute [
 
-    PhiRecorderInstance record
+	| buttonPresenter |
+	buttonPresenter := context toolbar items 
+		detect: [ :e | e help = self class defaultDescription ].
+
+	PhiRecorderInstance isRecording
+		ifTrue: [
+				PhiRecorderInstance stopRecording.
+				self setRecordingStatusForButton: buttonPresenter ]
+		ifFalse: [
+				PhiRecorderInstance record.
+				self setStopStatusForButton: buttonPresenter ]
+]
+
+{ #category : 'executing' }
+PhizuraRecordCommand >> setRecordingStatusForButton: buttonPresenter [
+
+	buttonPresenter
+		label: self class defaultName;
+		icon: (self iconNamed: self class defaultIconName)
+]
+
+{ #category : 'executing' }
+PhizuraRecordCommand >> setStopStatusForButton: buttonPresenter [
+
+	buttonPresenter
+		label: 'Stop Phizureada';
+		icon: (self iconNamed: #cancel)
 ]

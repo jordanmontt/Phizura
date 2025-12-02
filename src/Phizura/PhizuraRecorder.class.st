@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'instrumenter',
 		'records',
-		'isActivated'
+		'isRecording'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
@@ -22,7 +22,7 @@ PhizuraRecorder class >> forceUnrecord [
 { #category : 'api actions' }
 PhizuraRecorder >> addRecord: aRecord [
 
-    isActivated ifTrue: [ records add: aRecord ]
+    isRecording ifTrue: [ records add: aRecord ]
 ]
 
 { #category : 'inspector' }
@@ -49,7 +49,7 @@ PhizuraRecorder >> initialize [
     super initialize.
     instrumenter := PhizuraEvaluationInstrumentor onRecorder: self.
     records := OrderedCollection new.
-    isActivated := false
+    isRecording := false
 ]
 
 { #category : 'inspector' }
@@ -63,11 +63,17 @@ PhizuraRecorder >> inspectRecords: aBuilder [
 		  yourself
 ]
 
+{ #category : 'testing' }
+PhizuraRecorder >> isRecording [
+
+	^ isRecording
+]
+
 { #category : 'api actions' }
 PhizuraRecorder >> record [
 
     instrumenter instrument.
-    isActivated := true
+    isRecording := true
 ]
 
 { #category : 'accessing' }
@@ -78,6 +84,6 @@ PhizuraRecorder >> records [
 { #category : 'api actions' }
 PhizuraRecorder >> stopRecording [
 
-    isActivated := false.
+    isRecording := false.
     instrumenter uninstrument
 ]

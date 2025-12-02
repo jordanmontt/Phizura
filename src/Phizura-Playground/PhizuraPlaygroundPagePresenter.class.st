@@ -16,7 +16,6 @@ PhizuraPlaygroundPagePresenter class >> baseToolbarCommands [
 		  StPlaygroundPagesCommand.
 
 		  PhizuraRecordCommand.
-		  PhizuraStopRecordCommand.
 		  PhizuraCleanRecorderCommand.
 		  PhizuraInspectRecorderCommand.
 		  PhizuraOpenMoofLODCommand.
@@ -28,6 +27,26 @@ PhizuraPlaygroundPagePresenter >> connectPresenters [
 
     super connectPresenters.
     self recordKeyStrokes
+]
+
+{ #category : 'commands' }
+PhizuraPlaygroundPagePresenter >> doEvaluateAndGo [
+
+	^ self doEvaluateAndGoFor: text selectedTextOrLine
+]
+
+{ #category : 'commands' }
+PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
+
+	| value |
+	activationBlock ifNil: [ ^ self ].
+
+	value := text
+		evaluate: selectedText
+		onCompileError: [ ^ self ]
+		onError: [ :e | e pass ].
+
+	activationBlock value: value
 ]
 
 { #category : 'initialization' }
@@ -47,4 +66,10 @@ PhizuraPlaygroundPagePresenter >> recordKeyStrokes [
             PhiRecorderInstance addRecord: (PhizuraKeyEventRecordEntry
                      time: DateAndTime now
                      key: event key) ]
+]
+
+{ #category : 'accessing' }
+PhizuraPlaygroundPagePresenter >> toolbar [
+
+	^ toolbar
 ]

@@ -2,27 +2,23 @@ Class {
 	#name : 'PhizuraEvaluationInstrumentor',
 	#superclass : 'PhizuraInstrumentor',
 	#instVars : [
-		'coypuEvaluate'
+		'doItAndGo',
+		'evaluateAndGo'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
 	#tag : 'Instrumentation'
 }
 
-{ #category : 'instance creation' }
-PhizuraEvaluationInstrumentor class >> onRecorder: aRecorder [
-
-	^ self basicNew
-		  recorder: aRecorder;
-		  initialize;
-		  yourself
-]
-
 { #category : 'initialization' }
 PhizuraEvaluationInstrumentor >> initializeMethodProxies [
 
-    coypuEvaluate := MpMethodProxy
-			onMethod: SpCodeSelectionCommand >> #evaluate:andDo:
-    		handler: self phizuraHandler.
-    proxyVariables add: coypuEvaluate
+	evaluateAndGo := MpMethodProxy
+		onMethod: SpCodeSelectionCommand >> #evaluate:andDo:
+		handler: instrumentationHandler.
+	doItAndGo := MpMethodProxy
+		onMethod: PhizuraPlaygroundPagePresenter >> #doEvaluateAndGoFor:
+		handler: instrumentationHandler.
+
+	proxyVariables addAll: { evaluateAndGo . doItAndGo }
 ]
