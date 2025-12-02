@@ -22,7 +22,7 @@ Metacello new
 
 Phizura comes with its own Playground. You can open it by clicking on the button. Then, to start and stop the recording you only need to click the Playground buttons.
 
-<img width="578" height="200" alt="Capture d’écran 2025-09-19 à 11 48 56" src="https://github.com/user-attachments/assets/2f0c42fa-5232-4143-9b5d-4a351763b85c" />
+<img width="574" height="185" alt="Capture d’écran 2025-12-02 à 22 48 08" src="https://github.com/user-attachments/assets/db5c3bab-c9c0-44d9-86f1-441d2b0c58a0" />
 
 #### Option 2, programatically
 
