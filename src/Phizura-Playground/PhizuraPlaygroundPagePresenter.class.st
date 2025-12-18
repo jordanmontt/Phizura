@@ -1,6 +1,10 @@
 Class {
 	#name : 'PhizuraPlaygroundPagePresenter',
 	#superclass : 'StPlaygroundPagePresenter',
+	#instVars : [
+		'perf',
+		'performer'
+	],
 	#category : 'Phizura-Playground-Playground',
 	#package : 'Phizura-Playground',
 	#tag : 'Playground'
@@ -50,6 +54,13 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 ]
 
 { #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> initialize [
+
+	super initialize.
+	perf := Performance uniqueInstance performer: self performer 
+]
+
+{ #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> initializePresenters [
 
     super initializePresenters.
@@ -57,6 +68,18 @@ PhizuraPlaygroundPagePresenter >> initializePresenters [
     text interactionModel: (PhizuraPlaygroundInteractionModel new
              bindingToSelf: self;
              yourself)
+]
+
+{ #category : 'accessing' }
+PhizuraPlaygroundPagePresenter >> perf [
+
+	^ perf
+]
+
+{ #category : 'accessing' }
+PhizuraPlaygroundPagePresenter >> performer [
+
+	^ performer
 ]
 
 { #category : 'initialization' }
