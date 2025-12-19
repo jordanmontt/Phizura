@@ -5,9 +5,6 @@ Class {
 		'perf',
 		'performer'
 	],
-	#classInstVars : [
-		'performer'
-	],
 	#category : 'Phizura-Playground-Playground',
 	#package : 'Phizura-Playground',
 	#tag : 'Playground'
@@ -61,7 +58,7 @@ PhizuraPlaygroundPagePresenter >> initialize [
 
 	super initialize.
 	performer := PerformerLocal new.
-	perf := Performance uniqueInstance performer: self performer
+	perf := Performance uniqueInstance performer: performer
 ]
 
 { #category : 'initialization' }
@@ -72,18 +69,6 @@ PhizuraPlaygroundPagePresenter >> initializePresenters [
     text interactionModel: (PhizuraPlaygroundInteractionModel new
              bindingToSelf: self;
              yourself)
-]
-
-{ #category : 'accessing' }
-PhizuraPlaygroundPagePresenter >> perf [
-
-	^ perf
-]
-
-{ #category : 'accessing' }
-PhizuraPlaygroundPagePresenter >> performer [
-
-	^ performer
 ]
 
 { #category : 'initialization' }
