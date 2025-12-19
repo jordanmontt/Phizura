@@ -5,6 +5,9 @@ Class {
 		'perf',
 		'performer'
 	],
+	#classInstVars : [
+		'performer'
+	],
 	#category : 'Phizura-Playground-Playground',
 	#package : 'Phizura-Playground',
 	#tag : 'Playground'
@@ -57,7 +60,8 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 PhizuraPlaygroundPagePresenter >> initialize [
 
 	super initialize.
-	perf := Performance uniqueInstance performer: self performer 
+	performer := PerformerLocal new.
+	perf := Performance uniqueInstance performer: self performer
 ]
 
 { #category : 'initialization' }
