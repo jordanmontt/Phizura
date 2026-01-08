@@ -57,8 +57,9 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 PhizuraPlaygroundPagePresenter >> initialize [
 
 	super initialize.
-	performer := PerformerLocal new.
-	perf := Performance uniqueInstance performer: performer
+	self initializeRecorder.
+	"performer := PerformerLocal new.
+	perf := Performance uniqueInstance performer: performer"
 ]
 
 { #category : 'initialization' }
@@ -69,6 +70,13 @@ PhizuraPlaygroundPagePresenter >> initializePresenters [
     text interactionModel: (PhizuraPlaygroundInteractionModel new
              bindingToSelf: self;
              yourself)
+]
+
+{ #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> initializeRecorder [
+
+    PhiRecorderInstance := PhizuraRecorder new.
+    PhiRecorderInstance playgroundPage: self
 ]
 
 { #category : 'initialization' }

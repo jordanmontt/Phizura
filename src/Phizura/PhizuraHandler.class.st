@@ -2,7 +2,8 @@ Class {
 	#name : 'PhizuraHandler',
 	#superclass : 'MpHandler',
 	#instVars : [
-		'recorder'
+		'recorder',
+		'playgroundPage'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
@@ -25,9 +26,16 @@ PhizuraHandler >> beforeExecutionWithReceiver: anObject arguments: anArrayOfArgu
     argument := anArrayOfArguments first.
 
     recorder addRecord: (PhizuraEvaluationRecordEntry new
-            time: DateAndTime now;
-            expression: argument;
-            yourself)
+             time: DateAndTime now;
+             expression: argument;
+             cursorPosition: playgroundPage text cursorPosition;
+             yourself)
+]
+
+{ #category : 'accessing' }
+PhizuraHandler >> playgroundPage: aPresenter [
+
+    playgroundPage := aPresenter
 ]
 
 { #category : 'accessing' }

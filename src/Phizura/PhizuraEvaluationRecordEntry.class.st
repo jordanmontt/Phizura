@@ -2,7 +2,8 @@ Class {
 	#name : 'PhizuraEvaluationRecordEntry',
 	#superclass : 'PhizuraBasicRecordEntry',
 	#instVars : [
-		'expression'
+		'expression',
+		'cursorPosition'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
@@ -16,6 +17,12 @@ PhizuraEvaluationRecordEntry class >> expression: aString time: aTime [
 		  expression: aString;
 		  time: aTime;
 		  yourself
+]
+
+{ #category : 'accessing' }
+PhizuraEvaluationRecordEntry >> cursorPosition: aPoint [
+
+    cursorPosition := aPoint
 ]
 
 { #category : 'accessing' }
