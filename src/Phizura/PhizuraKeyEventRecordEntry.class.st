@@ -18,6 +18,22 @@ PhizuraKeyEventRecordEntry class >> time: aTime key: aKeystroke [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+PhizuraKeyEventRecordEntry class >> time: aTime key: aKeystroke cursorPosition: aCursorPosition [
+
+	^ self new
+		  time: aTime;
+		  key: aKeystroke;
+		  cursorPosition: aCursorPosition;
+		  yourself
+]
+
+{ #category : 'accessing' }
+PhizuraKeyEventRecordEntry >> cursorPosition [ 
+
+^ cursorPosition
+]
+
 { #category : 'accessing' }
 PhizuraKeyEventRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [
 
@@ -56,6 +72,6 @@ PhizuraKeyEventRecordEntry >> key: aKey [
 { #category : 'printing' }
 PhizuraKeyEventRecordEntry >> printOn: aStream [
 
-    aStream << 'KEY - '.
-    self key asString printOn: aStream
+	aStream << 'KEY - '.
+
 ]

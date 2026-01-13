@@ -82,10 +82,10 @@ PhizuraPlaygroundPagePresenter >> initializeRecorder [
 { #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> recordKeyStrokes [
 
-    self text eventHandler whenKeyUpDo: [ :event |
-            PhiRecorderInstance addRecord: (PhizuraKeyEventRecordEntry
-                     time: DateAndTime now
-                     key: event key) ]
+	self text eventHandler whenKeyUpDo: [ :event |
+			PhiRecorderInstance addRecord:
+				(PhizuraKeyEventRecordEntry time: DateAndTime now key: event key
+					 cursorPosition: self text cursorPosition) ]
 ]
 
 { #category : 'accessing' }
