@@ -66,7 +66,7 @@ PhizuraCodeEmitter >> emitMoofLODKeyStroke: record on: stream [
 	stream << ' toLocal: ''cursorX''.'.
 	stream << String cr.
 	record cursorPosition y printOn: stream.
-	stream << ' toLocal: ''cursorY''.'
+	stream << ' toLocal: ''cursorY''.' .
 	stream << String cr.
 ]
 
