@@ -59,9 +59,15 @@ PhizuraCodeEmitter >> emitMoofLODExpression: record on: stream [
 { #category : 'double dispatch API' }
 PhizuraCodeEmitter >> emitMoofLODKeyStroke: record on: stream [
 
-    record key value  printOn: stream.
-    stream << ' toLocal: ''keyPressed''.'.
-    stream << String cr
+	record key value printOn: stream.
+	stream << ' toLocal: ''keyPressed''.'.
+	stream << String cr.
+	record cursorPosition x printOn: stream.
+	stream << ' toLocal: ''cursorX''.'.
+	stream << String cr.
+	record cursorPosition y printOn: stream.
+	stream << ' toLocal: ''cursorY''.' .
+	stream << String cr.
 ]
 
 { #category : 'api' }

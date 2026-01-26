@@ -38,5 +38,5 @@ PhizuraCleanRecorderCommand class >> order [
 PhizuraCleanRecorderCommand >> execute [
 
     PhiRecorderInstance stopRecording.
-    PhiRecorderInstance := PhizuraRecorder new
+    context initializeRecorder
 ]

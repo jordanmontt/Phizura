@@ -57,8 +57,9 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 PhizuraPlaygroundPagePresenter >> initialize [
 
 	super initialize.
-	performer := PerformerLocal new.
-	perf := Performance uniqueInstance performer: performer
+	self initializeRecorder.
+	"performer := PerformerLocal new.
+	perf := Performance uniqueInstance performer: performer"
 ]
 
 { #category : 'initialization' }
@@ -72,12 +73,19 @@ PhizuraPlaygroundPagePresenter >> initializePresenters [
 ]
 
 { #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> initializeRecorder [
+
+    PhiRecorderInstance := PhizuraRecorder new.
+    PhiRecorderInstance playgroundPage: self
+]
+
+{ #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> recordKeyStrokes [
 
-    self text eventHandler whenKeyUpDo: [ :event |
-            PhiRecorderInstance addRecord: (PhizuraKeyEventRecordEntry
-                     time: DateAndTime now
-                     key: event key) ]
+	self text eventHandler whenKeyUpDo: [ :event |
+			PhiRecorderInstance addRecord:
+				(PhizuraKeyEventRecordEntry time: DateAndTime now key: event key
+					 cursorPosition: self text cursorPosition) ]
 ]
 
 { #category : 'accessing' }

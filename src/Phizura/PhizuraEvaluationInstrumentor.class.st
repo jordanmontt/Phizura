@@ -3,12 +3,30 @@ Class {
 	#superclass : 'PhizuraInstrumentor',
 	#instVars : [
 		'doItAndGo',
-		'evaluateAndGo'
+		'evaluateAndGo',
+		'playgroundPage'
 	],
 	#category : 'Phizura-Instrumentation',
 	#package : 'Phizura',
 	#tag : 'Instrumentation'
 }
+
+{ #category : 'instance creation' }
+PhizuraEvaluationInstrumentor class >> onRecorder: aRecorder playgroundPage: aPlaygroundPage [
+
+    ^ self basicNew
+          recorder: aRecorder;
+          playgroundPage: aPlaygroundPage;
+          initialize;
+          yourself
+]
+
+{ #category : 'initialization' }
+PhizuraEvaluationInstrumentor >> initialize [
+
+    super initialize.
+    instrumentationHandler playgroundPage: playgroundPage
+]
 
 { #category : 'initialization' }
 PhizuraEvaluationInstrumentor >> initializeMethodProxies [
@@ -21,4 +39,10 @@ PhizuraEvaluationInstrumentor >> initializeMethodProxies [
 		handler: instrumentationHandler.
 
 	proxyVariables addAll: { evaluateAndGo . doItAndGo }
+]
+
+{ #category : 'initialization' }
+PhizuraEvaluationInstrumentor >> playgroundPage: aPlaygroundPage [
+
+    playgroundPage := aPlaygroundPage
 ]

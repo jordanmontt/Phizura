@@ -2,12 +2,19 @@ Class {
 	#name : 'PhizuraBasicRecordEntry',
 	#superclass : 'Object',
 	#instVars : [
-		'time'
+		'time',
+		'cursorPosition'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
 	#tag : 'Core'
 }
+
+{ #category : 'accessing' }
+PhizuraBasicRecordEntry >> cursorPosition: aPoint [
+
+    cursorPosition := aPoint
+]
 
 { #category : 'accessing' }
 PhizuraBasicRecordEntry >> emitMoofLODCodeOnEmitter: emitter onStream: aStream [

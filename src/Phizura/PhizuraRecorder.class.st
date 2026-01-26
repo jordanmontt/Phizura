@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'instrumenter',
 		'records',
-		'isRecording'
+		'isRecording',
+		'playgroundPage'
 	],
 	#category : 'Phizura-Core',
 	#package : 'Phizura',
@@ -47,7 +48,6 @@ PhizuraRecorder >> emitPerformanceCode [
 PhizuraRecorder >> initialize [
 
     super initialize.
-    instrumenter := PhizuraEvaluationInstrumentor onRecorder: self.
     records := OrderedCollection new.
     isRecording := false
 ]
@@ -69,9 +69,16 @@ PhizuraRecorder >> isRecording [
 	^ isRecording
 ]
 
+{ #category : 'accessing' }
+PhizuraRecorder >> playgroundPage: aPhizuraPlaygroundPage [
+
+    playgroundPage := aPhizuraPlaygroundPage
+]
+
 { #category : 'api actions' }
 PhizuraRecorder >> record [
 
+    instrumenter := PhizuraEvaluationInstrumentor onRecorder: self playgroundPage: playgroundPage.
     instrumenter instrument.
     isRecording := true
 ]
@@ -85,5 +92,5 @@ PhizuraRecorder >> records [
 PhizuraRecorder >> stopRecording [
 
     isRecording := false.
-    instrumenter uninstrument
+    instrumenter ifNotNil: [ instrumenter uninstrument ]
 ]
