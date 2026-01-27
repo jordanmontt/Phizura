@@ -1,6 +1,6 @@
 # Phizura
 
-Phizura is a [Coypu](https://github.com/lucretiomsp/Coypu) recorder implementation using [MethodProxies](https://github.com/pharo-contributions/MethodProxies) as the instrumentation backend.
+Phizura, pronounced `/fi'su*ra/` following Latin American Spanish phonetics, is a [Coypu](https://github.com/lucretiomsp/Coypu) recorder implementation using [MethodProxies](https://github.com/pharo-contributions/MethodProxies) as the instrumentation backend.
 With MethodProxies Phizura instruments the necessary methods to capture all Playground evaluations and key strokes.
 This is useful for music performances. The artist, the one using Coypu to make music, can perform and all the code evaluations will be recorder. 
 After, phizura generates readable code, identical of the one being performed, and allows to replay the music performance with the **exact** times and delays.
