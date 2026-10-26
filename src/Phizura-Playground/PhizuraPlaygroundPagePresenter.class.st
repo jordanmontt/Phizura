@@ -29,8 +29,10 @@ PhizuraPlaygroundPagePresenter class >> baseToolbarCommands [
 { #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> connectPresenters [
 
-    super connectPresenters.
-    self recordKeyStrokes
+	super connectPresenters.
+	
+	self emitKeyStrokes.
+	"self recordKeyStrokes"
 ]
 
 { #category : 'commands' }
@@ -51,6 +53,13 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 		onError: [ :e | e pass ].
 
 	activationBlock value: value
+]
+
+{ #category : 'initialization' }
+PhizuraPlaygroundPagePresenter >> emitKeyStrokes [
+
+	self text eventHandler whenKeyUpDo: [ :event |
+			(Random new nextIntegerBetween: 0 and: 200 ) toLocal: 'test' ]
 ]
 
 { #category : 'initialization' }
