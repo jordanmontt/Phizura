@@ -59,7 +59,10 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 PhizuraPlaygroundPagePresenter >> emitKeyStrokes [
 
 	self text eventHandler whenKeyUpDo: [ :event |
-			(Random new nextIntegerBetween: 0 and: 200 ) toLocal: 'test' ]
+			"event inspect."
+			{
+				(Random new nextIntegerBetween: 0 and: 200).
+				event keyValue * 2 } toLocal: 'test' ]
 ]
 
 { #category : 'initialization' }
