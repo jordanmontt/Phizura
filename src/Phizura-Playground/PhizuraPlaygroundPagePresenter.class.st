@@ -58,11 +58,21 @@ PhizuraPlaygroundPagePresenter >> doEvaluateAndGoFor: selectedText [
 { #category : 'initialization' }
 PhizuraPlaygroundPagePresenter >> emitKeyStrokes [
 
-	self text eventHandler whenKeyUpDo: [ :event |
-			"event inspect."
+	self text eventHandler whenKeyUpDo: [ :event | "if Command is depressed"
+		"event keyValue inspect."
+			event key value = 65515 ifTrue: [ 0 toLocal: 'strobo' ].
 			{
+			"any key except space bar takes out the thunder"
+			event keyValue = 32 ifTrue: [ 1 toLocalAsInt: 'thunder' ] ifFalse: [ 0 toLocalAsInt: 'thunder' ] .
 				(Random new nextIntegerBetween: 0 and: 200).
-				event keyValue * 2 } toLocal: 'test' ]
+				(event keyValue * 2) } toLocal: 'test' ].
+
+	"key downs"
+	"comand"
+	self text eventHandler whenKeyDownDo: [ :event | "event keyValue inspect."
+			event keyValue toLocalAsInt: 'keyValue'.
+			"comand"
+			event key value = 65515 ifTrue: [ "whatever" 255 toLocal: 'strobo' ] ]
 ]
 
 { #category : 'initialization' }
