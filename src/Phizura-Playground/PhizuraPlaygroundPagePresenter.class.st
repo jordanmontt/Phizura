@@ -61,9 +61,10 @@ PhizuraPlaygroundPagePresenter >> emitKeyStrokes [
 	self text eventHandler whenKeyUpDo: [ :event | "if Command is depressed"
 		"event keyValue inspect."
 			event key value = 65515 ifTrue: [ 0 toLocal: 'strobo' ].
-			{
 			"any key except space bar takes out the thunder"
 			event keyValue = 32 ifTrue: [ 1 toLocalAsInt: 'thunder' ] ifFalse: [ 0 toLocalAsInt: 'thunder' ] .
+			{
+			
 				(Random new nextIntegerBetween: 0 and: 200).
 				(event keyValue * 2) } toLocal: 'test' ].
 
