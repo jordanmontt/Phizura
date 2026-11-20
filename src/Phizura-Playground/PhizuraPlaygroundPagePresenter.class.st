@@ -63,6 +63,8 @@ PhizuraPlaygroundPagePresenter >> emitKeyStrokes [
 			event key value = 65515 ifTrue: [ 0 toLocal: 'strobo' ].
 			event key name = #DOWN ifTrue: [ 1 toLocalAsInt: 'down' ].
 			event key name = #UP ifTrue: [ 1 toLocalAsInt: 'up' ].
+			event key name = #LEFT ifTrue: [ 1 toLocalAsInt: 'left' ].
+			event key name = #RIGHT ifTrue: [ 1 toLocalAsInt: 'right' ].
 			"any key except space bar takes out the thunder"
 			event keyValue = 32
 				ifTrue: [ 1 toLocalAsInt: 'thunder' ]
